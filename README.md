@@ -3,7 +3,6 @@
 
 Leaked version of PollosHook Client Decompiled and Remapped for Yarn.
 
-
 ## FAQ
 
 - Why is it so broken?
