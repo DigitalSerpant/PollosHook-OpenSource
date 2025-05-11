@@ -17,6 +17,6 @@ Yes, the leaked PollosHook Client did contain malware. This is a cleaned version
 
 Yes, the source code published will sucessfully build to create a somewhat functioning PollosHook Client.
 
-- Will you create update the client?
+- Will you update the client?
 
 Only for fixes.
