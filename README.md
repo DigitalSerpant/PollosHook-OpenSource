@@ -20,3 +20,7 @@ Yes, the source code published will sucessfully build to create a somewhat funct
 - Will you update the client?
 
 Only for fixes.
+
+- Where can I download it.
+
+  If your too lazy to compile it you can get it from the [releases](https://github.com/DigitalSerpant/PollosHook-OpenSource/releases)
