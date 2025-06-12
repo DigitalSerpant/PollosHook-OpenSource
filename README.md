@@ -23,4 +23,4 @@ Leaked version of PollosHook Client Decompiled and Remapped for Yarn.
 
 - Where can I download it.
 
-  If your too lazy to compile it you can get it from the [releases](https://github.com/DigitalSerpant/PollosHook-OpenSource/releases)
+  If your too lazy to compile it you can get it from the [releases](https://github.com/DigitalSerpant/PollosHook-OpenSource/releases). Requires "fabricloader": ">=0.16.9", "minecraft": "1.21.1", "java": ">=21","fabric-api": "*"
