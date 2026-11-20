@@ -5,21 +5,17 @@ Leaked version of PollosHook Client Decompiled and Remapped for Yarn.
 
 ## FAQ
 
-- Why is it so broken?
+- What was used for decompilation?
 
-  The client was decompiled using the Fernflower decompiler, so it’s not perfect. A lot of manual fixes were done just to make it   buildable, resulting in an imperfect translation. If you’d like something fixed, feel free to submit a pull request.
+  Vineflower.
 
-- Wasn't the PollosHook Client leak ratted?
+- Didn't the PollosHook leak contain malware?
 
   Yes, the leaked PollosHook Client did contain malware. This is a cleaned version of the client. More research on the malware can be found [here](https://github.com/Egida/kutuzov-backdoor).
 
 - Does it build sucessfully?
 
-  Yes, the source code published will sucessfully build to create a somewhat functioning PollosHook Client.
-
-- Will you update the client?
-
-  Only for fixes.
+  Yes, the source code published will sucessfully build to create the fully functional PollosHook Client.
 
 - Where can I download it.
 
