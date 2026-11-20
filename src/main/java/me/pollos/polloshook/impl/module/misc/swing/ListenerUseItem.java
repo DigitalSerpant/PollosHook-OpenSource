@@ -14,7 +14,7 @@ public class ListenerUseItem extends ModuleListener<Swing, PacketEvent.Send<Play
 
    public ListenerUseItem(Swing module) {
       super(module, PacketEvent.Send.class, PlayerInteractItemC2SPacket.class);
-      this.itemList = Arrays.asList(Items.POTION, Items.ENDER_PEARL, Items.SPLASH_POTION, Items.LINGERING_POTION);
+      this.itemList = Arrays.asList(Items.EXPERIENCE_BOTTLE, Items.ENDER_PEARL, Items.SNOWBALL, Items.EGG);
    }
 
    public void call(PacketEvent.Send<PlayerInteractItemC2SPacket> event) {

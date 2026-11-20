@@ -64,7 +64,7 @@ public class Totems extends HUDModule {
       } else if (count == 5) {
          return Formatting.DARK_GREEN.getColorValue();
       } else if (count == 4) {
-         return Formatting.WHITE.getColorValue();
+         return Formatting.YELLOW.getColorValue();
       } else if (count == 3) {
          return Formatting.GOLD.getColorValue();
       } else if (count == 2) {

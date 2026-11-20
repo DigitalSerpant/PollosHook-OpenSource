@@ -5,6 +5,7 @@ import me.pollos.polloshook.asm.ducks.world.IClientWorldProperties;
 import me.pollos.polloshook.impl.module.render.customsky.CustomSky;
 import net.minecraft.client.world.ClientWorld.Properties;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.Constant;
 import org.spongepowered.asm.mixin.injection.ModifyConstant;
@@ -13,6 +14,16 @@ import org.spongepowered.asm.mixin.injection.ModifyConstant;
 public class MixinClientWorldProperties implements IClientWorldProperties {
    @Shadow
    private long timeOfDay;
+
+   /**
+    * @author PollosHook
+    * @reason Apply the CustomSky time override to the client world.
+    */
+   @Overwrite
+   public long getTimeOfDay() {
+      CustomSky sky = (CustomSky)Managers.getModuleManager().get(CustomSky.class);
+      return sky.isEnabled() && sky.getTimeChanger().getValue() ? sky.getTime().getValue() : this.timeOfDay;
+   }
 
    @ModifyConstant(
       method = {"getSkyDarknessHeight"},

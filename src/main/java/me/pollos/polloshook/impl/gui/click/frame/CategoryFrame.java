@@ -1,7 +1,6 @@
 package me.pollos.polloshook.impl.gui.click.frame;
 
 import com.mojang.blaze3d.systems.RenderSystem;
-import java.util.List;
 import me.pollos.polloshook.api.managers.Managers;
 import me.pollos.polloshook.api.minecraft.render.Render2DMethods;
 import me.pollos.polloshook.impl.gui.click.component.Component;
@@ -49,42 +48,13 @@ public class CategoryFrame extends Frame {
     }
 
     @Override
-    public void keyPressed(int keyCode, int scanCode, int modifiers) {
-        if (this.isExtended()) {
-             this.getComponents().forEach((component) -> {
-                component.keyPressed(keyCode, scanCode, modifiers);
-             });
-        }
-        super.keyPressed(keyCode, scanCode, modifiers);
-    }
-
-    @Override
     public boolean mouseClicked(double mouseX, double mouseY, int button) {
         float scrollMaxHeight = (float)MinecraftClient.getInstance().getWindow().getScaledHeight() - (this.getPosY() + this.getHeight());
         if (this.isExtended() && Render2DMethods.mouseWithinBounds(mouseX, mouseY, (double)this.getPosX(), (double)(this.getPosY() + this.getHeight()), (double)this.getWidth(), (double)(Math.min(this.getCurrentHeight() + 1.0f, scrollMaxHeight + 1.0f)))) {
-             boolean handledByComponent = false;
-            for (Component component : this.getComponents()) {
-                 if (component.mouseClicked(mouseX, mouseY, button)) {
-                     handledByComponent = true;
-                     break;
-                 }
-             }
-             if (handledByComponent) {
-                 return true;
-             }
+            this.getComponents().forEach(component -> component.mouseClicked(mouseX, mouseY, button));
         }
 
         return super.mouseClicked(mouseX, mouseY, button);
-    }
-
-    @Override
-    public boolean mouseReleased(double mouseX, double mouseY, int mouseButton) {
-         if (this.isExtended()) {
-              this.getComponents().forEach((component) -> {
-                 component.mouseReleased(mouseX, mouseY, mouseButton);
-              });
-         }
-        return super.mouseReleased(mouseX, mouseY, mouseButton);
     }
 
     @Override
@@ -92,7 +62,7 @@ public class CategoryFrame extends Frame {
         float scrollMaxHeight = (float)MinecraftClient.getInstance().getWindow().getScaledHeight() - (this.getPosY() + this.getHeight());
 
         if (this.isExtended() && Render2DMethods.mouseWithinBounds(mouseX, mouseY, (double)this.getPosX(), (double)(this.getPosY() + this.getHeight()), (double)this.getWidth(), (double)(Math.min(this.getCurrentHeight() + 1.0f, scrollMaxHeight + 1.0f)))) {
-            if (this.getScrollY() > scrollMaxHeight - this.getCurrentHeight()) {
+            if (this.getCurrentHeight() > scrollMaxHeight) {
                  float scrollSpeed = Math.max(1.0f, Math.min(this.getCurrentHeight() / 20f, scrollMaxHeight / 10f));
 
                 int currentScrollY = this.getScrollY();
@@ -115,23 +85,9 @@ public class CategoryFrame extends Frame {
     @Override
     public boolean charTyped(char chr, int modifiers) {
         if (this.isExtended()) {
-            for (Component component : this.getComponents()) {
-                if (component.charTyped(chr, modifiers)) {
-                    return true;
-                }
-            }
+            this.getComponents().forEach(component -> component.charTyped(chr, modifiers));
         }
         return super.charTyped(chr, modifiers);
-    }
-
-    private int getVisibleValueComponentCount(ModuleComponent moduleComponent) {
-        int count = 0;
-        for (Component valueComponent : moduleComponent.getComponents()) {
-            if (valueComponent instanceof ValueComponent value && value.getValue().getParent().isVisible()) {
-                count++;
-            }
-        }
-        return count;
     }
 
     public void updatePositions() {
@@ -141,32 +97,21 @@ public class CategoryFrame extends Frame {
 
         for (Component component : this.getComponents()) {
             component.setOffsetY(offsetY);
-            component.moved(currentFramePosX, currentFramePosY + offsetY);
-
-            if (component instanceof ModuleComponent moduleComponent) {
-                if (moduleComponent.isExtended()) {
-                    float currentModuleOffsetY = offsetY + moduleComponent.getHeight();
-
-                    for (Component valueComponent : moduleComponent.getComponents()) {
-                        if (valueComponent instanceof ValueComponent value && value.getValue().getParent().isVisible()) {
-                            valueComponent.setOffsetY(currentModuleOffsetY - offsetY);
-                            valueComponent.moved(currentFramePosX, currentFramePosY + currentModuleOffsetY);
-                            currentModuleOffsetY += valueComponent.getHeight();
-                        }
+            component.moved(currentFramePosX, currentFramePosY);
+            offsetY += component.getHeight();
+            if (component instanceof ModuleComponent moduleComponent && moduleComponent.isExtended()) {
+                for (Component valueComponent : moduleComponent.getComponents()) {
+                    if (valueComponent instanceof ValueComponent<?, ?> value && value.getValue().getParent().isVisible()) {
+                        offsetY += valueComponent.getHeight();
                     }
-                    offsetY = currentModuleOffsetY;
-                    offsetY += 3.0F;
-                } else {
-                    offsetY += component.getHeight();
                 }
-            } else {
-                offsetY += component.getHeight();
+                offsetY += 0.5F;
             }
         }
     }
 
     private float getCurrentHeight() {
-        float totalContentHeight = 0.0F;
+        float totalContentHeight = 1.0F;
 
         for (Component component : this.getComponents()) {
             totalContentHeight += component.getHeight();

@@ -46,10 +46,10 @@ public class Coords extends HUDModule {
 
       if (showCoords) {
          String directionString = this.getDirectionForDisplay();
-         String var10000 = String.valueOf(Formatting.GRAY);
-         String coordsString = "XYZ: " + var10000 + this.getRoundedDouble(mc.player.getX()) + String.valueOf(Formatting.BOLD) + ", " + String.valueOf(Formatting.GRAY) + this.getRoundedDouble(mc.player.getY()) + String.valueOf(Formatting.BOLD) + ", " + String.valueOf(Formatting.GRAY) + this.getRoundedDouble(mc.player.getZ());
+         String var10000 = String.valueOf(Formatting.WHITE);
+         String coordsString = "XYZ: " + var10000 + this.getRoundedDouble(mc.player.getX()) + String.valueOf(Formatting.GRAY) + ", " + String.valueOf(Formatting.WHITE) + this.getRoundedDouble(mc.player.getY()) + String.valueOf(Formatting.GRAY) + ", " + String.valueOf(Formatting.WHITE) + this.getRoundedDouble(mc.player.getZ());
          if (!mc.world.getRegistryKey().getValue().getPath().equals("the_end") && (Boolean)this.nether.getValue()) {
-            coordsString = coordsString + String.valueOf(Formatting.BOLD) + " (" + String.valueOf(Formatting.GRAY) + this.getRoundedDouble(this.getDimensionCoord(mc.player.getX())) + String.valueOf(Formatting.BOLD) + ", " + String.valueOf(Formatting.GRAY) + this.getRoundedDouble(this.getDimensionCoord(mc.player.getZ())) + String.valueOf(Formatting.BOLD) + ")";
+            coordsString = coordsString + String.valueOf(Formatting.GRAY) + " (" + String.valueOf(Formatting.WHITE) + this.getRoundedDouble(this.getDimensionCoord(mc.player.getX())) + String.valueOf(Formatting.GRAY) + ", " + String.valueOf(Formatting.WHITE) + this.getRoundedDouble(this.getDimensionCoord(mc.player.getZ())) + String.valueOf(Formatting.GRAY) + ")";
          }
 
          switch((DirectionMode)this.mode.getValue()) {
@@ -66,12 +66,12 @@ public class Coords extends HUDModule {
    }
 
    private void renderRotations(DrawContext context, boolean showCoords) {
-      String var10000 = String.valueOf(Formatting.GRAY);
-      String yawText = "Yaw: " + var10000 + String.format("%.2f", MathHelper.wrapDegrees(mc.player.getYaw())) + ((Boolean)this.server.getValue() ? String.valueOf(Formatting.BOLD) + " (" + String.valueOf(Formatting.GRAY) + String.format("%.2f", MathHelper.wrapDegrees(Managers.getRotationManager().getRenderYaw())) + String.valueOf(Formatting.BOLD) + ")" : "");
-      var10000 = String.valueOf(Formatting.GRAY);
-      String pitchText = "Pitch: " + var10000 + String.format("%.2f", MathHelper.wrapDegrees(mc.player.getPitch())) + ((Boolean)this.server.getValue() ? String.valueOf(Formatting.BOLD) + " (" + String.valueOf(Formatting.GRAY) + String.format("%.2f", MathHelper.wrapDegrees(Managers.getRotationManager().getRenderPitch())) + String.valueOf(Formatting.BOLD) + ")" : "");
-      var10000 = String.valueOf(Formatting.GRAY);
-      String bodyYaw = "BodyYaw: " + var10000 + String.format("%.2f", MathHelper.wrapDegrees(mc.player.getBodyYaw())) + String.valueOf(Formatting.BOLD) + " (" + String.valueOf(Formatting.GRAY) + "%.2f".formatted(new Object[]{MathHelper.wrapDegrees(Managers.getRotationManager().getRenderBodyYaw())}) + String.valueOf(Formatting.BOLD) + ")";
+      String var10000 = String.valueOf(Formatting.WHITE);
+      String yawText = "Yaw: " + var10000 + String.format("%.2f", MathHelper.wrapDegrees(mc.player.getYaw())) + ((Boolean)this.server.getValue() ? String.valueOf(Formatting.GRAY) + " (" + String.valueOf(Formatting.WHITE) + String.format("%.2f", MathHelper.wrapDegrees(Managers.getRotationManager().getRenderYaw())) + String.valueOf(Formatting.GRAY) + ")" : "");
+      var10000 = String.valueOf(Formatting.WHITE);
+      String pitchText = "Pitch: " + var10000 + String.format("%.2f", MathHelper.wrapDegrees(mc.player.getPitch())) + ((Boolean)this.server.getValue() ? String.valueOf(Formatting.GRAY) + " (" + String.valueOf(Formatting.WHITE) + String.format("%.2f", MathHelper.wrapDegrees(Managers.getRotationManager().getRenderPitch())) + String.valueOf(Formatting.GRAY) + ")" : "");
+      var10000 = String.valueOf(Formatting.WHITE);
+      String bodyYaw = "BodyYaw: " + var10000 + String.format("%.2f", MathHelper.wrapDegrees(mc.player.getBodyYaw())) + String.valueOf(Formatting.GRAY) + " (" + String.valueOf(Formatting.WHITE) + "%.2f".formatted(new Object[]{MathHelper.wrapDegrees(Managers.getRotationManager().getRenderBodyYaw())}) + String.valueOf(Formatting.GRAY) + ")";
       int yOffset = context.getScaledWindowHeight() - (showCoords ? (this.isChatOpened ? 34 : 20) : (this.isChatOpened ? 24 : 10));
       if (!(Boolean)this.sameLine.getValue() && !this.isChatOpened) {
          this.drawText(context, yawText, 2, context.getScaledWindowHeight() - (showCoords ? 30 : 20));
@@ -87,11 +87,11 @@ public class Coords extends HUDModule {
       String var10000;
       Formatting col;
       if ((Boolean)this.yaw.getValue()) {
-         col = (Boolean)this.color.getValue() ? Formatting.RESET : Formatting.GRAY;
+         col = (Boolean)this.color.getValue() ? Formatting.RESET : Formatting.WHITE;
          var10000 = String.valueOf(col);
-         return var10000 + this.getFixedDirection() + String.valueOf(Formatting.BOLD) + this.getDirectionForDisplay() + ", " + String.valueOf(Formatting.GRAY) + MathUtil.round((double)MathHelper.wrapDegrees(mc.player.getYaw()), 1) + String.valueOf(Formatting.BOLD) + "]";
+         return var10000 + this.getFixedDirection() + String.valueOf(Formatting.GRAY) + this.getDirectionForDisplay() + ", " + String.valueOf(Formatting.WHITE) + MathUtil.round((double)MathHelper.wrapDegrees(mc.player.getYaw()), 1) + String.valueOf(Formatting.GRAY) + "]";
       } else {
-         col = (Boolean)this.color.getValue() ? Formatting.RESET : Formatting.GRAY;
+         col = (Boolean)this.color.getValue() ? Formatting.RESET : Formatting.WHITE;
          var10000 = String.valueOf(col);
          return var10000 + this.getFixedDirection() + this.getDirectionForDisplay();
       }
@@ -120,16 +120,16 @@ public class Coords extends HUDModule {
       String var10000;
       switch(getDirection4D()) {
       case 0:
-         var10000 = String.valueOf(Formatting.BOLD) + " [" + String.valueOf(Formatting.GRAY) + "+Z" + String.valueOf(Formatting.BOLD) + "]";
+         var10000 = String.valueOf(Formatting.GRAY) + " [" + String.valueOf(Formatting.WHITE) + "+Z" + String.valueOf(Formatting.GRAY) + "]";
          break;
       case 1:
-         var10000 = String.valueOf(Formatting.BOLD) + " [" + String.valueOf(Formatting.GRAY) + "-X" + String.valueOf(Formatting.BOLD) + "]";
+         var10000 = String.valueOf(Formatting.GRAY) + " [" + String.valueOf(Formatting.WHITE) + "-X" + String.valueOf(Formatting.GRAY) + "]";
          break;
       case 2:
-         var10000 = String.valueOf(Formatting.BOLD) + " [" + String.valueOf(Formatting.GRAY) + "-Z" + String.valueOf(Formatting.BOLD) + "]";
+         var10000 = String.valueOf(Formatting.GRAY) + " [" + String.valueOf(Formatting.WHITE) + "-Z" + String.valueOf(Formatting.GRAY) + "]";
          break;
       case 3:
-         var10000 = String.valueOf(Formatting.BOLD) + " [" + String.valueOf(Formatting.GRAY) + "+X" + String.valueOf(Formatting.BOLD) + "]";
+         var10000 = String.valueOf(Formatting.GRAY) + " [" + String.valueOf(Formatting.WHITE) + "+X" + String.valueOf(Formatting.GRAY) + "]";
          break;
       default:
          throw new IllegalStateException("Unexpected value: " + getDirection4D());

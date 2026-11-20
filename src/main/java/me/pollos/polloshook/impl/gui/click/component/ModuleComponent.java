@@ -103,7 +103,7 @@ public class ModuleComponent extends Component {
       if (var13 instanceof ToggleableModule) {
          ToggleableModule toggleableModule = (ToggleableModule)var13;
          if (!this.getModule().getCategory().getLabel().equalsIgnoreCase("Other") && !this.getModule().getCategory().getLabel().equalsIgnoreCase("Elements")) {
-            KeybindValue keybindValue = new KeybindValue(toggleableModule.getKeybind(), new String[]{"Keybind", "key", "bind", "elementCodec"});
+            KeybindValue keybindValue = new KeybindValue(toggleableModule.getKeybind(), new String[]{"Keybind", "key", "bind", "b"});
             keybindValue.addObserver((event) -> {
                ((ToggleableModule)this.getModule()).setKeybind((Keybind)event.getValue());
             });
@@ -262,7 +262,7 @@ public class ModuleComponent extends Component {
          Component component = (Component)var2.next();
          if (component instanceof ValueComponent && ((ValueComponent)component).getValue().getParent().isVisible()) {
             component.setOffsetY(offsetY);
-            component.moved(this.getPosX(), this.getPosY());
+            component.moved(this.getFinishedX(), this.getFinishedY());
             offsetY += component.getHeight();
          }
       }

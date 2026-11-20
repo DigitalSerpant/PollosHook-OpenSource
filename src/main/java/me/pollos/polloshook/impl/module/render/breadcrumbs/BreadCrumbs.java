@@ -34,7 +34,7 @@ public class BreadCrumbs extends ToggleableModule {
       this.fade = (new Value(false, new String[]{"Fade", "f", "fadeout"})).setParent(this.self);
       this.alphaFactor = (new NumberValue(1.5F, 1.0F, 5.0F, 0.1F, new String[]{"AlphaFactor", "alpha"})).setParent(this.fade);
       this.pearls = new Value(true, new String[]{"Pearls", "p", "pearlies"});
-      this.arrows = new Value(false, new String[]{"Arrows", "keyCodec", "bullets"});
+      this.arrows = new Value(false, new String[]{"Arrows", "a", "bullets"});
       this.bottles = new Value(false, new String[]{"Bottles", "beer", "exp", "xp"});
       this.others = new Value(false, new String[]{"Others", "oter"});
       this.timeout = (new NumberValue(2.5F, 0.1F, 5.0F, 0.1F, new String[]{"Timeout"})).withTag("second").setParent((Parent)this.getAnyEnabledParent());

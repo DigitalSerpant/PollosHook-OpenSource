@@ -32,7 +32,7 @@ public class Shader extends ToggleableModule {
    protected final Value<Boolean> crystals = new Value(true, new String[]{"Crystals", "endcrystals"});
    protected final Value<Boolean> items = new Value(false, new String[]{"Items", "i"});
    protected final Value<Boolean> pearls = new Value(false, new String[]{"Pearls", "pp"});
-   protected final Value<Boolean> animals = new Value(false, new String[]{"Animals", "keyCodec"});
+   protected final Value<Boolean> animals = new Value(false, new String[]{"Animals", "a"});
    protected final Value<Boolean> monsters = new Value(false, new String[]{"Monsters", "m"});
    protected final Value<Boolean> others = new Value(false, new String[]{"Others", "other"});
    protected final Value<Boolean> hand = new Value(false, new String[]{"Hand", "hands"});

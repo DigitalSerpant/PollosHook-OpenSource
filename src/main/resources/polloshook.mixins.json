@@ -4,6 +4,7 @@
 	"package": "me.pollos.polloshook.asm.mixins",
 	"compatibilityLevel": "JAVA_21",
 	"mixins": [
+	  "block.IAbstractBlock",
 	  "block.MixinAbstractBlock",
 	  "block.MixinBlockCollisionSpliterator",
 	  "block.MixinCobweb",

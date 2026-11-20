@@ -22,13 +22,13 @@ public class ClientLogger implements Loggable {
     }
 
     public void log(Text text) {
-        MutableText append = Text.of(" " + String.valueOf(Formatting.GRAY)).copy();
+        MutableText append = Text.of(" " + String.valueOf(Formatting.WHITE)).copy();
         TextUtil.printWithID(this.getAlert().copy().append(append).append(text), -2147442069);
     }
 
     public void log(String text, int id) {
         MutableText var10000 = this.getAlert().copy();
-        String var10001 = String.valueOf(Formatting.GRAY);
+        String var10001 = String.valueOf(Formatting.WHITE);
         TextUtil.printWithID(var10000.append(" " + var10001 + text), id);
     }
 
@@ -41,7 +41,7 @@ public class ClientLogger implements Loggable {
     }
 
     public void log(Text text, int id) {
-        MutableText append = Text.of(" " + String.valueOf(Formatting.GRAY)).copy();
+        MutableText append = Text.of(" " + String.valueOf(Formatting.WHITE)).copy();
         TextUtil.printWithID(this.getAlert().copy().append(append).append(text), id);
     }
 
@@ -49,7 +49,7 @@ public class ClientLogger implements Loggable {
         if (delete) {
             this.log(text);
         } else {
-            MutableText append = Text.of(" " + String.valueOf(Formatting.GRAY)).copy();
+            MutableText append = Text.of(" " + String.valueOf(Formatting.WHITE)).copy();
             TextUtil.printWithID(this.getAlert().copy().append(append).append(text), 0);
         }
     }

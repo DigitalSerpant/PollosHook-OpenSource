@@ -18,7 +18,7 @@ public class PingCommand extends Command {
       } else if (!Managers.getIrcManager().isConnected()) {
          return "Not connected to irc...";
       } else if (!((IrcModule)Managers.getModuleManager().get(IrcModule.class)).isInsideRoom()) {
-         return "Haven't joined keyCodec chat room yet...";
+         return "Haven't joined a chat room yet...";
       } else if (mc.getCurrentServerEntry() == null) {
          return "Unable to get server ip (singleplayer?)";
       } else {

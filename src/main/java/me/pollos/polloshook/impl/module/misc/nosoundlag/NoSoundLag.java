@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional; 
-import java.util.stream.Collectors;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 
@@ -20,7 +19,6 @@ import me.pollos.polloshook.api.value.value.constant.EnumValue;
 import me.pollos.polloshook.impl.module.misc.nosoundlag.util.CountedSound;
 import me.pollos.polloshook.impl.module.misc.nosoundlag.util.NoSoundMode;
 import net.minecraft.client.sound.SoundInstance;
-import net.minecraft.registry.Registries;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.resource.Resource;
 import net.minecraft.sound.SoundEvent;
@@ -42,19 +40,15 @@ public class NoSoundLag extends ToggleableModule {
       this.sounds = new ArrayList();
 
       this.packetSounds = Arrays.asList(
-            SoundEvents.ENTITY_GENERIC_DRINK,
-            SoundEvents.ENTITY_GENERIC_EAT,
-            SoundEvents.ENTITY_PLAYER_ATTACK_CRIT,
-            SoundEvents.ENTITY_PLAYER_ATTACK_SWEEP,
-            SoundEvents.ENTITY_GENERIC_HURT,
-            SoundEvents.ENTITY_PLAYER_HURT,
-            SoundEvents.ENTITY_PLAYER_DEATH,
-            SoundEvents.ENTITY_GENERIC_SPLASH
-      ).stream()
-       .map(soundEvent -> Registries.SOUND_EVENT.getEntry(soundEvent.getId()))
-       .filter(Optional::isPresent) 
-       .map(Optional::get) 
-       .collect(Collectors.toList());
+            SoundEvents.ITEM_ARMOR_EQUIP_GENERIC,
+            SoundEvents.ITEM_ARMOR_EQUIP_ELYTRA,
+            SoundEvents.ITEM_ARMOR_EQUIP_NETHERITE,
+            SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND,
+            SoundEvents.ITEM_ARMOR_EQUIP_IRON,
+            SoundEvents.ITEM_ARMOR_EQUIP_GOLD,
+            SoundEvents.ITEM_ARMOR_EQUIP_CHAIN,
+            SoundEvents.ITEM_ARMOR_EQUIP_LEATHER
+      );
 
 
       this.offerValues(new Value[]{this.mode, this.threshold, this.factor});

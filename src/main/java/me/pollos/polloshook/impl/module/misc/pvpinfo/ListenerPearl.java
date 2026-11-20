@@ -26,8 +26,8 @@ public class ListenerPearl extends ModuleListener<PvPInfo, PearlThrowEvent> {
          }
 
 
-         MutableText mutableText = Text.empty().append(Text.literal(name).formatted(new Formatting[]{Formatting.BOLD, Formatting.GRAY}).append(Text.literal(" ").formatted(Formatting.RESET)));
-         Text throwPearl = Manager.get().getThemedText("has thrown keyCodec pearl");
+         MutableText mutableText = Text.empty().append(Text.literal(name).formatted(new Formatting[]{Formatting.BOLD, Formatting.WHITE}).append(Text.literal(" ").formatted(Formatting.RESET)));
+         Text throwPearl = Manager.get().getThemedText("has thrown a pearl");
          mutableText.append(throwPearl);
          if ((Boolean)((PvPInfo)this.module).direction.getValue()) {
             String direction = event.getPearl().getMovementDirection().getName();

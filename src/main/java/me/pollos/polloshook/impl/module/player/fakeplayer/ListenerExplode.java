@@ -45,7 +45,7 @@ public class ListenerExplode extends ModuleListener<FakePlayer, PacketEvent.Rece
             player.setAbsorptionAmount(8.0F);
             player.getStatusEffects().clear();
             player.addStatusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 900, 1));
-            player.addStatusEffect(new StatusEffectInstance(StatusEffects.FIRE_RESISTANCE, 100, 1));
+            player.addStatusEffect(new StatusEffectInstance(StatusEffects.ABSORPTION, 100, 1));
             this.receive(new EntityStatusS2CPacket(player, (byte)35));
          } else {
             if (player.getHealth() - damage <= 0.0F) {

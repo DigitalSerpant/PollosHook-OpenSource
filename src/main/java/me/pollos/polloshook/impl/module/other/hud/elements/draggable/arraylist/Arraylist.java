@@ -191,7 +191,7 @@ public class Arraylist extends DraggableHUDModule {
 
    private String bracket(Module mod, String tag) {
       Formatting bracket = ((BracketColor)this.bracketColor.getValue()).getFormatting();
-      return String.format("%s %s[%s%s%s]", mod.getDisplayLabel(), bracket, Formatting.GRAY, tag, bracket);
+      return String.format("%s %s[%s%s%s]", mod.getDisplayLabel(), bracket, Formatting.WHITE, tag, bracket);
    }
 
    

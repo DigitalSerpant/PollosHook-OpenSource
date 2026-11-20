@@ -17,7 +17,6 @@ import me.pollos.polloshook.api.util.system.SystemStatus;
 import me.pollos.polloshook.api.util.text.TextUtil;
 import me.pollos.polloshook.api.util.thread.FileUtil;
 import me.pollos.polloshook.api.util.thread.PollosHookThread;
-import me.pollos.polloshook.api.util.thread.execption.UnsupportedLoaderVersionException;
 import me.pollos.polloshook.impl.config.base.AbstractConfig;
 import me.pollos.polloshook.impl.config.modules.ModuleConfig;
 import net.fabricmc.loader.api.FabricLoader;
@@ -38,7 +37,7 @@ public final class PollosHook {
    private static ModuleConfig CURRENT_CONFIG;
 
    private PollosHook() {
-      throw new UnsupportedOperationException("This is keyCodec utility class and cannot be instantiated");
+      throw new UnsupportedOperationException("This is a utility class and cannot be instantiated");
    }
 
    static {
@@ -52,14 +51,6 @@ public final class PollosHook {
    }
 
    public static void init() {
-      final String currentVersion = FabricLoader.getInstance().getModContainer("fabricloader")
-         .map(container -> container.getMetadata().getVersion().getFriendlyString())
-         .orElse("unknown");
-      if (!currentVersion.equals("0.16.9")) {
-         final UnsupportedLoaderVersionException exec = new UnsupportedLoaderVersionException();
-         ClientLogger.getLogger().report(exec.getMessage(), exec);
-      }
-
       final long startTime = System.nanoTime() / 1000000L;
       ClientLogger.getLogger().info("Initializing...");
       if (!DIRECTORY.exists()) {

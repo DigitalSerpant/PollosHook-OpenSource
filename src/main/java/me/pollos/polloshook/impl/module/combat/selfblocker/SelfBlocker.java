@@ -8,7 +8,7 @@ import me.pollos.polloshook.api.value.value.Value;
 
 public class SelfBlocker extends TrapModule {
    protected final Value<Boolean> autoDisable = new Value(false, new String[]{"AutoDisable", "disable"});
-   protected final Value<Boolean> auto = new Value(false, new String[]{"Auto", "keyCodec", "automatic"});
+   protected final Value<Boolean> auto = new Value(false, new String[]{"Auto", "a", "automatic"});
    protected final NumberValue<Float> range;
 
    public SelfBlocker() {

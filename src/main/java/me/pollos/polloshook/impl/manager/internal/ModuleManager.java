@@ -608,94 +608,42 @@ public class ModuleManager extends SubscriberImpl implements Minecraftable, Init
 
                            int code;
                            try {
-                              byte var14 = -1;
-                              switch (bind.hashCode()) {
-                                 case -1790479043:
-                                    if (bind.equals("Thumb3")) {
-                                       var14 = 2;
-                                    }
-                                    break;
-                                 case -1790479042:
-                                    if (bind.equals("Thumb4")) {
-                                       var14 = 3;
-                                    }
-                                    break;
-                                 case 2433880:
-                                    if (bind.equals("None")) {
-                                       var14 = 4;
-                                    }
-                                    break;
-                                 case 579723500:
-                                    if (bind.equals("RightClick")) {
-                                       var14 = 0;
-                                    }
-                                    break;
-                                 case 2063030483:
-                                    if (bind.equals("MiddleClick")) {
-                                       var14 = 1;
-                                    }
-                              }
-
-                              switch (var14) {
-                                 case 0:
-                                    code = 1;
-                                    break;
-                                 case 1:
-                                    code = 2;
-                                    break;
-                                 case 2:
-                                    code = 3;
-                                    break;
-                                 case 3:
-                                    code = 4;
-                                    break;
-                                 case 4:
-                                    code = -1;
-                                    break;
-                                 default:
-                                    code = InputUtil.fromTranslationKey(bind).getCode();
-                                }
-                           } catch (Exception var16) {
+                              code = switch (bind) {
+                                 case "RightClick" -> 1;
+                                 case "MiddleClick" -> 2;
+                                 case "Thumb3" -> 3;
+                                 case "Thumb4" -> 4;
+                                 case "None" -> -1;
+                                 default -> InputUtil.fromTranslationKey(bind).getCode();
+                              };
+                           } catch (Exception invalidBind) {
                               code = -1;
                            }
-                           /*
+
                            if (hold) {
-                              HoldKeybind kbx = new HoldKeybind(code) {
-                                 // $FF: synthetic field
-                                 final ToggleableModule val$toggleableModule;
-                                 {
-                                    super(key);
-                                    this.val$toggleableModule = var3;
-                                 }
-
+                              toggleableModule.setKeybind(new HoldKeybind(code) {
+                                 @Override
                                  public void onKeyPress() {
-                                    this.val$toggleableModule.setEnabled(true);
+                                    toggleableModule.setEnabled(true);
                                  }
 
+                                 @Override
                                  public void onKeyHold() {
                                  }
 
+                                 @Override
                                  public void onKeyRelease() {
-                                    this.val$toggleableModule.setEnabled(false);
+                                    toggleableModule.setEnabled(false);
                                  }
-                              };
-                              toggleableModule.setKeybind(kbx);
+                              });
                            } else {
-                              Keybind kb = new Keybind(this, code, toggleableModule) {
-                                 // $FF: synthetic field
-                                 final ToggleableModule val$toggleableModule;
-                                 {
-                                    super(key);
-                                    this.val$toggleableModule = var3;
-                                 }
-
+                              toggleableModule.setKeybind(new Keybind(code) {
+                                 @Override
                                  public void onKeyPress() {
-                                    this.val$toggleableModule.toggle();
+                                    toggleableModule.toggle();
                                  }
-                              };
-                              toggleableModule.setKeybind(kb);
+                              });
                            }
-                           */
 
                            break;
                         }
@@ -944,7 +892,7 @@ public class ModuleManager extends SubscriberImpl implements Minecraftable, Init
    private void sendToggleMessage(ToggleableModule toggleable) {
       boolean enabled = toggleable.isEnabled();
       if ((Boolean) Manager.get().getForgeHax().getValue()) {
-         ClientLogger.getLogger().logNoMark(String.valueOf(Formatting.GRAY)
+         ClientLogger.getLogger().logNoMark(String.valueOf(Formatting.WHITE)
                + "> %s.enabled = %s".formatted(new Object[] { toggleable.getLabel(), enabled }), 4444);
       } else {
          MutableText label = Text.literal(toggleable.getLabel()).styled((style) -> {
@@ -957,7 +905,7 @@ public class ModuleManager extends SubscriberImpl implements Minecraftable, Init
          Text on = Text.literal(enabled ? "enabled" : "disabled").styled((style) -> {
             return style.withFormatting(color).withBold(false);
          });
-         label.formatted(Formatting.GRAY);
+         label.formatted(Formatting.WHITE);
          MutableText mutableText = label.append(was).append(on);
          ClientLogger.getLogger().log((Text) mutableText, 4444);
       }

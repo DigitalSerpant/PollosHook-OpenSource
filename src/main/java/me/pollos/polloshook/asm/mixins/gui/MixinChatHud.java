@@ -95,7 +95,7 @@ public abstract class MixinChatHud implements IChatHud {
    )
    private SimpleOption<Double> renderHook(GameOptions instance) {
       BetterChat BETTER_CHAT = (BetterChat)Managers.getModuleManager().get(BetterChat.class);
-      return BETTER_CHAT.isEnabled() && (Boolean)BETTER_CHAT.getClearBackground().getValue() ? new SimpleOption("KingHex", SimpleOption.emptyTooltip(), (ValueTextGetter)null, DoubleSliderCallbacks.INSTANCE, 0.0D, (value) -> {
+      return BETTER_CHAT != null && BETTER_CHAT.isEnabled() && BETTER_CHAT.getClearBackground().getValue() ? new SimpleOption("KingHex", SimpleOption.emptyTooltip(), (ValueTextGetter)null, DoubleSliderCallbacks.INSTANCE, 0.0D, (value) -> {
          this.client.inGameHud.getChatHud().reset();
       }) : instance.getTextBackgroundOpacity();
    }
@@ -109,6 +109,9 @@ public abstract class MixinChatHud implements IChatHud {
    )
    private int renderHook(DrawContext context, TextRenderer textRenderer, OrderedText text, int x, int y, int color) {
       BetterChat BETTER_CHAT = (BetterChat)Managers.getModuleManager().get(BetterChat.class);
+      if (BETTER_CHAT == null) {
+         return context.drawTextWithShadow(textRenderer, text, x, y, color);
+      }
       String s = TextUtil.translate(text);
       String name = EntityUtil.getName(this.client.player);
       if (BETTER_CHAT.isEnabled() && BETTER_CHAT.getHighlight() && (Boolean)BETTER_CHAT.getColored().getValue() && s.contains(name)) {
@@ -150,8 +153,8 @@ public abstract class MixinChatHud implements IChatHud {
    private void addToMessageHistoryHook(String message, CallbackInfo ci) {
       String name = EntityUtil.getName(this.client.player);
       BetterChat BETTER_CHAT = (BetterChat)Managers.getModuleManager().get(BetterChat.class);
-      if (BETTER_CHAT.isEnabled() && BETTER_CHAT.getSound() && message.contains(name)) {
-         Matcher pattern = Pattern.compile("(?<!<)\\elementCodec" + Pattern.quote(name) + "\\elementCodec(?!>)").matcher(message);
+      if (BETTER_CHAT != null && BETTER_CHAT.isEnabled() && BETTER_CHAT.getSound() && message.contains(name)) {
+         Matcher pattern = Pattern.compile("(?<!<)\\b" + Pattern.quote(name) + "\\b(?!>)").matcher(message);
          if (pattern.find()) {
             this.client.getSoundManager().play(PositionedSoundInstance.master(SoundEvents.BLOCK_STONE_BUTTON_CLICK_OFF, 1.0F, 0.3F)); // I too lazy to find what it really is, you'll live...
          }
@@ -180,7 +183,7 @@ public abstract class MixinChatHud implements IChatHud {
 )
    )
    private void addMessageHook(ChatHud instance, boolean value) {
-      this.hasUnreadNewMessages = !((BetterChat)Managers.getModuleManager().get(BetterChat.class)).isEnabled() || !(Boolean)((BetterChat)Managers.getModuleManager().get(BetterChat.class)).getAntiScroll().getValue();
+      this.hasUnreadNewMessages = value && !polloshook$shouldPreventChatScroll();
    }
 
    @Redirect(
@@ -191,9 +194,15 @@ public abstract class MixinChatHud implements IChatHud {
 )
    )
    private void addMessageHook(ChatHud instance, int scroll) {
-      if (!((BetterChat)Managers.getModuleManager().get(BetterChat.class)).isEnabled() || !(Boolean)((BetterChat)Managers.getModuleManager().get(BetterChat.class)).getAntiScroll().getValue()) {
-         instance.scroll(1);
+      if (!polloshook$shouldPreventChatScroll()) {
+         instance.scroll(scroll);
       }
+   }
+
+   @Unique
+   private boolean polloshook$shouldPreventChatScroll() {
+      BetterChat betterChat = Managers.getModuleManager().get(BetterChat.class);
+      return betterChat != null && betterChat.isEnabled() && betterChat.getAntiScroll().getValue();
    }
 
    @ModifyConstant(
@@ -203,7 +212,7 @@ public abstract class MixinChatHud implements IChatHud {
 )}
    )
    private int addMessageHook(int size) {
-      return Managers.getModuleManager() != null && ((BetterChat)Managers.getModuleManager().get(BetterChat.class)).getInfinite() ? Integer.MAX_VALUE : size;
+      return polloshook$chatLimit(size);
    }
 
    @ModifyConstant(
@@ -213,7 +222,7 @@ public abstract class MixinChatHud implements IChatHud {
 )}
    )
    private int addVisibleMessageHook(int size) {
-      return Managers.getModuleManager() != null && ((BetterChat)Managers.getModuleManager().get(BetterChat.class)).getInfinite() ? Integer.MAX_VALUE : size;
+      return polloshook$chatLimit(size);
    }
 
    @ModifyConstant(
@@ -223,7 +232,13 @@ public abstract class MixinChatHud implements IChatHud {
 )}
    )
    private int addToMessageHistoryHook(int size) {
-      return Managers.getModuleManager() != null && ((BetterChat)Managers.getModuleManager().get(BetterChat.class)).getInfinite() ? Integer.MAX_VALUE : size;
+      return polloshook$chatLimit(size);
+   }
+
+   @Unique
+   private int polloshook$chatLimit(int size) {
+      BetterChat betterChat = Managers.getModuleManager().get(BetterChat.class);
+      return betterChat != null && betterChat.getInfinite() ? Integer.MAX_VALUE : size;
    }
 
    public List<Text> getTexts() {

@@ -41,10 +41,10 @@ public class ListenerChatMouseClick extends ModuleListener<BetterChat, ChatMouse
                String name = contentNoColor.substring(0, i);
                String str = contentNoColor.substring(i).trim();
                String translateNoName = this.translate(str, ((Language)((BetterChat)this.module).targetLanguage.getValue()).getCode());
-               ClientLogger.getLogger().log("%s%s %s".formatted(new Object[]{Formatting.WHITE, name, translateNoName}));
+               ClientLogger.getLogger().log("%s%s %s".formatted(new Object[]{Formatting.YELLOW, name, translateNoName}));
             } else {
                String translatedMessage = this.translate(contentNoColor, ((Language)((BetterChat)this.module).targetLanguage.getValue()).getCode());
-               ClientLogger.getLogger().log("%s%s".formatted(new Object[]{Formatting.WHITE, translatedMessage}));
+               ClientLogger.getLogger().log("%s%s".formatted(new Object[]{Formatting.YELLOW, translatedMessage}));
             }
          }
 

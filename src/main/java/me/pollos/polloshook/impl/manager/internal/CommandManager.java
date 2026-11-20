@@ -206,7 +206,7 @@ public class CommandManager extends SubscriberImpl implements Initializable {
                                         }
                                     }
                                  } else if (mod.getValues().isEmpty()) {
-                                    ClientLogger.getLogger().log(String.format("%s%s%s has no values", Formatting.AQUA, mod.getLabel(), Formatting.RESET));
+                                    ClientLogger.getLogger().log(String.format("%s%s%s has no values", Formatting.GREEN, mod.getLabel(), Formatting.WHITE));
                                  } else {
                                     StringJoiner stringJoiner = new StringJoiner(", ");
                                     Iterator<Value<?>> valueIterator = mod.getValues().iterator();
@@ -215,7 +215,7 @@ public class CommandManager extends SubscriberImpl implements Initializable {
                                        Value<?> value = valueIterator.next();
                                        if (value instanceof TargetValue) {
                                           TargetValue targetValue = (TargetValue)value;
-                                           String str = String.format("%s (Players %s | Bosses %s | Monsters %s | Friendlies %s) (IgnoreInvis %s | IgnoreNakeds %s | Targeting %s)",
+                                           String str = String.format("%s (Players %s | Monsters %s | Friendlies %s) (IgnoreInvis %s | IgnoreNakeds %s | Targeting %s)",
                                               targetValue.getLabel(),
                                               targetValue.isTargetPlayers(),
                                               targetValue.isTargetMonsters(),
@@ -228,7 +228,7 @@ public class CommandManager extends SubscriberImpl implements Initializable {
                                           ColorValue colorValue = (ColorValue)value;
                                           boolean isGlobal = colorValue.isGlobal();
                                           if (!isGlobal) {
-                                             stringJoiner.add(String.format("%s, %s(Red %s, Green %s, Blue %s, Alpha %s)%s", colorValue.getLabel(), Formatting.GREEN, colorValue.getColor().getRed(), colorValue.getColor().getGreen(), colorValue.getColor().getBlue(), colorValue.getColor().getAlpha(), Formatting.RESET));
+                                             stringJoiner.add(String.format("%s, %s(Red %s, Green %s, Blue %s, Alpha %s)%s", colorValue.getLabel(), Formatting.GRAY, colorValue.getColor().getRed(), colorValue.getColor().getGreen(), colorValue.getColor().getBlue(), colorValue.getColor().getAlpha(), Formatting.WHITE));
                                           } else {
                                              stringJoiner.add(String.format("%s [Global]", colorValue.getLabel()));
                                           }
@@ -411,22 +411,22 @@ public class CommandManager extends SubscriberImpl implements Initializable {
    }
 
    public static String currentMessage(Module module, Value<?> val, Object value) {
-      return Formatting.AQUA + module.getLabel() + Formatting.RESET + " value " + Formatting.YELLOW + val.getLabel() + Formatting.RESET + " current value is " + Formatting.GREEN + String.valueOf(value);
+      return Formatting.GRAY + module.getLabel() + Formatting.WHITE + " value " + Formatting.AQUA + val.getLabel() + Formatting.WHITE + " current value is " + Formatting.GREEN + String.valueOf(value);
    }
 
    public static String setColorMessage(Module module, Value<?> val, String color, Object value) {
-      return Formatting.AQUA + module.getLabel() + Formatting.RESET + " value " + Formatting.YELLOW + val.getLabel() + Formatting.RESET + " " + color + " was set to " + Formatting.GREEN + String.valueOf(value);
+      return Formatting.GRAY + module.getLabel() + Formatting.WHITE + " value " + Formatting.AQUA + val.getLabel() + Formatting.WHITE + " " + color + " was set to " + Formatting.GREEN + String.valueOf(value);
    }
 
    public static String setMessage(Module module, Value<?> val, Object value) {
-      return Formatting.AQUA + module.getLabel() + Formatting.RESET + " value " + Formatting.YELLOW + val.getLabel() + Formatting.RESET + " was set to " + Formatting.GREEN + String.valueOf(value);
+      return Formatting.GRAY + module.getLabel() + Formatting.WHITE + " value " + Formatting.AQUA + val.getLabel() + Formatting.WHITE + " was set to " + Formatting.GREEN + String.valueOf(value);
    }
 
    private String handleBoolean(Value<Boolean> value) {
       value.setValue(!(Boolean)value.getValue());
       return String.format("%s%s%s value %s%s%s was %s",
-          Formatting.AQUA, value.getLabel(), Formatting.RESET,
-          Formatting.YELLOW, value.getLabel(), Formatting.RESET,
+          Formatting.GRAY, value.getLabel(), Formatting.WHITE,
+          Formatting.AQUA, value.getLabel(), Formatting.WHITE,
           (Boolean)value.getValue() ? Formatting.GREEN + "enabled" : Formatting.RED + "disabled");
    }
 

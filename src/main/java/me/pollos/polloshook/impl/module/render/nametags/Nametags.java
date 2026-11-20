@@ -321,7 +321,7 @@ public class Nametags extends ToggleableModule {
          } else if (hel > 16) {
             color = Formatting.DARK_GREEN;
          } else if (hel > 12) {
-            color = Formatting.WHITE;
+            color = Formatting.YELLOW;
          } else if (hel > 8) {
             color = Formatting.GOLD;
          } else if (hel > 5) {
@@ -348,7 +348,7 @@ public class Nametags extends ToggleableModule {
                   var10000 = Formatting.DARK_GREEN;
                   break;
                case 3:
-                  var10000 = Formatting.WHITE;
+                  var10000 = Formatting.YELLOW;
                   break;
                case 4:
                   var10000 = Formatting.GOLD;

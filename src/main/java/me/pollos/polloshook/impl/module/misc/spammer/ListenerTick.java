@@ -20,7 +20,7 @@ public class ListenerTick extends SafeModuleListener<Spammer, TickEvent> {
       if (PlayerUtil.isNull()) {
          ((Spammer)this.module).setEnabled(false);
       } else if (((Spammer)this.module).currentFile == null && ((Spammer)this.module).mode.getValue() == SpammerMode.FILE) {
-         ClientLogger.getLogger().log("Load keyCodec file to use this " + String.valueOf(Formatting.BLACK) + "nigger");
+         ClientLogger.getLogger().log("Load a file to use this " + String.valueOf(Formatting.BLACK) + "nigger");
          ((Spammer)this.module).setEnabled(false);
       } else if (!(Boolean)((Spammer)this.module).loop.getValue() && ((Spammer)this.module).strings.isEmpty()) {
          ((Spammer)this.module).toggle();

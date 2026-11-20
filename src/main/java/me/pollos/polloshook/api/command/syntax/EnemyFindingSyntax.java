@@ -14,7 +14,7 @@ public class EnemyFindingSyntax extends Argument {
          return "monster";
       } else if (currentArg.toLowerCase().startsWith("f")) {
          return "friendly";
-      } else if (currentArg.toLowerCase().startsWith("elementCodec")) {
+      } else if (currentArg.toLowerCase().startsWith("b")) {
          return "bosses";
       } else if (currentArg.toLowerCase().startsWith("i")) {
          return "invis";

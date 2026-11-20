@@ -12,7 +12,7 @@ import net.minecraft.util.shape.VoxelShapes;
 
 public class ListenerCollide extends ModuleListener<Avoid, CollisionShapeEvent> {
    public ListenerCollide(Avoid module) {
-      super(module, CollisionShapeShapeEvent.class);
+      super(module, CollisionShapeEvent.class);
    }
 
    public void call(CollisionShapeEvent event) {

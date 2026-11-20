@@ -212,7 +212,7 @@ public class ColorValue extends Value<Color> implements Minecraftable {
             case 12:
             case 13:
                this.setGlobal(!isGlobal);
-               return String.format("%s%s%s property %s%s%s Global was %s", Formatting.YELLOW, mod.getLabel(), Formatting.GRAY, Formatting.AQUA, this.getLabel(), Formatting.GRAY, !isGlobal ? String.valueOf(Formatting.GREEN) + "enabled" : String.valueOf(Formatting.RED) + "disabled");
+               return String.format("%s%s%s property %s%s%s Global was %s", Formatting.GRAY, mod.getLabel(), Formatting.WHITE, Formatting.AQUA, this.getLabel(), Formatting.WHITE, !isGlobal ? String.valueOf(Formatting.GREEN) + "enabled" : String.valueOf(Formatting.RED) + "disabled");
             case 14:
             case 15:
                hex = String.format("#%02x%02x%02x%02x", alpha, red, green, blue);
@@ -250,7 +250,7 @@ public class ColorValue extends Value<Color> implements Minecraftable {
 
       float[] hsl = HSLColor.fromRGB(this.getColor());
       String hex = ColorUtil.colorToHex(this.getColor());
-      return String.format("%s %s(RGBA: Red %s, Green %s, Blue %s, Alpha %s\nHSL: Hue %.1f, Saturation %.1f, Lightness %.1f\nHEX: #%s)%s [Global = %s]", this.getLabel(), Formatting.GREEN, red, green, blue, alpha, hsl[0], hsl[1], hsl[2], hex.toUpperCase(), Formatting.GRAY, isGlobal);
+      return String.format("%s %s(RGBA: Red %s, Green %s, Blue %s, Alpha %s\nHSL: Hue %.1f, Saturation %.1f, Lightness %.1f\nHEX: #%s)%s [Global = %s]", this.getLabel(), Formatting.GREEN, red, green, blue, alpha, hsl[0], hsl[1], hsl[2], hex.toUpperCase(), Formatting.WHITE, isGlobal);
    }
 
    

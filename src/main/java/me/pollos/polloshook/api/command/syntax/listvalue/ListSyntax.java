@@ -12,7 +12,7 @@ public class ListSyntax extends Argument {
          return "list";
       } else if (currentArg.toLowerCase().startsWith("c")) {
          return "clear";
-      } else if (currentArg.toLowerCase().startsWith("keyCodec")) {
+      } else if (currentArg.toLowerCase().startsWith("a")) {
          return "add";
       } else {
          return currentArg.toLowerCase().startsWith("d") ? "del" : currentArg;

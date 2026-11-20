@@ -53,7 +53,7 @@ public class ListenerIrcMessage extends ModuleListener<IrcModule, IrcMessageEven
                String mention = "@" + user;
                if (greenText.contains(mention)) {
                   Formatting formatting = message.startsWith("> ") ? Formatting.GREEN : Formatting.RESET;
-                  greenText = greenText.replace(mention, String.valueOf(Formatting.WHITE) + mention + String.valueOf(formatting));
+                  greenText = greenText.replace(mention, String.valueOf(Formatting.YELLOW) + mention + String.valueOf(formatting));
                   if (user.equalsIgnoreCase(Managers.getIrcManager().getFixedName(Managers.getIrcManager().getUsername()))) {
                      Render2DMethods.ding();
                   }

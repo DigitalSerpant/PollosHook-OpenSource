@@ -4,21 +4,21 @@ import net.minecraft.util.Formatting;
 
 public enum ColorEnum {
    BLACK(Formatting.BLACK),
-   WHITE(Formatting.GRAY),
+   WHITE(Formatting.WHITE),
    DARK_BLUE(Formatting.DARK_BLUE),
    DARK_GREEN(Formatting.DARK_GREEN),
    DARK_AQUA(Formatting.DARK_AQUA),
    DARK_RED(Formatting.DARK_RED),
    DARK_PURPLE(Formatting.DARK_PURPLE),
    DARK_GRAY(Formatting.DARK_GRAY),
-   GRAY(Formatting.BOLD),
+   GRAY(Formatting.GRAY),
    GOLD(Formatting.GOLD),
    BLUE(Formatting.BLUE),
    GREEN(Formatting.GREEN),
    AQUA(Formatting.AQUA),
    RED(Formatting.RED),
    LIGHT_PURPLE(Formatting.LIGHT_PURPLE),
-   YELLOW(Formatting.WHITE);
+   YELLOW(Formatting.YELLOW);
 
    private final Formatting color;
 

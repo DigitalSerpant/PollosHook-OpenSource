@@ -74,7 +74,7 @@ public class SetKeyBindCommand extends Command {
    };
 
    public SetKeyBindCommand() {
-      super(new String[]{"Bind", "SetKeyBind", "elementCodec"}, new ModuleArgument("[mod]"), new KeyArgument("[key]"));
+      super(new String[]{"Bind", "SetKeyBind", "b"}, new ModuleArgument("[mod]"), new KeyArgument("[key]"));
    }
 
    public String execute(String[] args) {
@@ -90,7 +90,7 @@ public class SetKeyBindCommand extends Command {
                PollosHook.getEventBus().register(this.mouseButtonEventListener);
                PollosHook.getEventBus().register(this.updateEventListener);
                mc.getSoundManager().play(PositionedSoundInstance.master(SoundEvents.UI_BUTTON_CLICK, 1.0F));
-               return "Press keyCodec key to bind the module..";
+               return "Press a key to bind the module..";
             }
 
             if (args.length == 3) {

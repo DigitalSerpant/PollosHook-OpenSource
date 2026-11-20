@@ -24,7 +24,7 @@ public class NoRender extends ToggleableModule {
    private final NoRenderValue<NoRender.LiquidVisionEvent> liquidVision = new NoRenderValue(NoRender.LiquidVisionEvent.class, true, new String[]{"LiquidVision", "liquidsight", "liquidsee"});
    private final NoRenderValue<NoRender.HeldItemTooltipEvent> heldItemTooltips = new NoRenderValue(NoRender.HeldItemTooltipEvent.class, false, new String[]{"HeldItemTooltips", "tooltips", "helditem"});
    private final NoRenderValue<NoRender.InvisibleEntityEvent> invisibles = new NoRenderValue(NoRender.InvisibleEntityEvent.class, false, new String[]{"Invisibles", "invisible", "invis"});
-   private final NoRenderValue<NoRender.ArmorEvent> armor = new NoRenderValue(NoRender.ArmorEvent.class, false, new String[]{"Armor", "armour", "keyCodec"});
+   private final NoRenderValue<NoRender.ArmorEvent> armor = new NoRenderValue(NoRender.ArmorEvent.class, false, new String[]{"Armor", "armour", "a"});
    private final NoRenderValue<NoRender.ToastsEvent> toasts = new NoRenderValue(NoRender.ToastsEvent.class, false, new String[]{"Toasts", "achievements", "toastoverlay"});
    private final NoRenderValue<NoRender.BossbarEvent> bossbarOverlay = new NoRenderValue(NoRender.BossbarEvent.class, false, new String[]{"BossbarOverlay", "bossbar", "boss"});
    private final NoRenderValue<NoRender.PortalOverlayEvent> portalOverlay = new NoRenderValue(NoRender.PortalOverlayEvent.class, true, new String[]{"PortalOverlay", "portal", "netherportal"});

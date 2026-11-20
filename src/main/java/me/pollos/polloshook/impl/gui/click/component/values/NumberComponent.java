@@ -14,7 +14,7 @@ import net.minecraft.client.gui.DrawContext;
 import net.minecraft.util.math.MathHelper;
 
 public class NumberComponent extends ValueComponent<Number, NumberValue<Number>> {
-   private static NumberValue<Number> numberValue;
+   private final NumberValue<Number> numberValue;
    private boolean sliding;
    private float customFontFix = 0.0F;
 

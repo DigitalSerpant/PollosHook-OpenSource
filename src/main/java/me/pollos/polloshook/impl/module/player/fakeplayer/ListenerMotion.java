@@ -43,7 +43,7 @@ public class ListenerMotion extends ModuleListener<FakePlayer, MotionUpdateEvent
             player.addStatusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 400, 1));
             player.addStatusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 6000, 0));
             player.addStatusEffect(new StatusEffectInstance(StatusEffects.FIRE_RESISTANCE, 6000, 0));
-            player.addStatusEffect(new StatusEffectInstance(StatusEffects.WEAKNESS, 2400, 3));
+            player.addStatusEffect(new StatusEffectInstance(StatusEffects.ABSORPTION, 2400, 3));
             ((FakePlayer)this.module).timer.reset();
          }
 

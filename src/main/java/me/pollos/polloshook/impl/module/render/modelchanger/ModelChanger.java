@@ -42,8 +42,8 @@ public class ModelChanger extends ToggleableModule {
       this.rotateX = new NumberValue(0.0F, -360.0F, 360.0F, 2.0F, new String[]{"RotateX", "rx"});
       this.rotateY = new NumberValue(0.0F, -360.0F, 360.0F, 2.0F, new String[]{"RotateY", "ry"});
       this.rotateZ = new NumberValue(0.0F, -360.0F, 360.0F, 2.0F, new String[]{"RotateZ", "rz"});
-      this.modifyAlpha = new Value(false, new String[]{"ModifyAlpha", "keyCodec"});
-      this.alpha = (new NumberValue(255, 0, 255, new String[]{"Alpha", "keyCodec"})).setParent(this.modifyAlpha);
+      this.modifyAlpha = new Value(false, new String[]{"ModifyAlpha", "a"});
+      this.alpha = (new NumberValue(255, 0, 255, new String[]{"Alpha", "a"})).setParent(this.modifyAlpha);
       this.offerValues(new Value[]{this.eating, this.onlyHand, this.oldScale, this.translateX, this.translateY, this.translateZ, this.scaleX, this.scaleY, this.scaleZ, this.rotateX, this.rotateY, this.rotateZ, this.modifyAlpha, this.alpha});
       this.offerListeners(new Listener[]{new ListenerHeldItemRender(this), new ListenerPushMatrix(this), new ListenerAlpha(this)});
    }

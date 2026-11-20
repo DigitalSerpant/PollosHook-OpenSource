@@ -28,7 +28,7 @@ public abstract class MixinPostEffectProcessor implements IShaderEffect {
    @Shadow
    private List<PostEffectPass> passes;
 
-   @Accessor
+   @Accessor("passes")
    public abstract List<PostEffectPass> getPasses();
 
    public void addHook(String name, Framebuffer buffer) {

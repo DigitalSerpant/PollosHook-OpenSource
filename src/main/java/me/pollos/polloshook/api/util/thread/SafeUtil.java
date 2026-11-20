@@ -26,7 +26,7 @@ public final class SafeUtil {
 
    
    private SafeUtil() {
-      throw new UnsupportedOperationException("This is keyCodec utility class and cannot be instantiated");
+      throw new UnsupportedOperationException("This is a utility class and cannot be instantiated");
    }
 
    @FunctionalInterface

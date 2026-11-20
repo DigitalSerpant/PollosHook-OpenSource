@@ -9,7 +9,7 @@ import me.pollos.polloshook.api.minecraft.network.NetworkUtil;
 
 public class AddCommand extends Command {
    public AddCommand() {
-      super(new String[]{"Add", "keyCodec", "ad", "addfriend"}, new AddCommand.AddPlayerArgument());
+      super(new String[]{"Add", "a", "ad", "addfriend"}, new AddCommand.AddPlayerArgument());
    }
 
    public String execute(String[] args) {
@@ -18,7 +18,7 @@ public class AddCommand extends Command {
          Managers.getFriendManager().addFriend(name, name);
          return "Added friend with ign %s".formatted(new Object[]{name});
       } else {
-         return "%s is already keyCodec friend".formatted(new Object[]{name});
+         return "%s is already a friend".formatted(new Object[]{name});
       }
    }
 

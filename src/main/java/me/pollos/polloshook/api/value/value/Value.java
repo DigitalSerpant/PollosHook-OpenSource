@@ -34,10 +34,6 @@ public class Value<T> extends Observable<ValueEvent<T>> implements Labeled, IVal
         this.setValue(this.defaultValue);
     }
 
-    public void setValue(Enum<?> enum1) {
-        setValue(enum1);
-     }
-
     public void setValue(T value) {
         ValueEvent<T> event = this.onChange(new ValueEvent(this, value));
         if (!event.isCanceled()) {

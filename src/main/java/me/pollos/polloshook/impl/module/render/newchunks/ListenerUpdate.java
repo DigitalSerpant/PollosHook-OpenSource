@@ -2,11 +2,11 @@ package me.pollos.polloshook.impl.module.render.newchunks;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Iterator;
 import java.util.List;
 import me.pollos.polloshook.api.event.listener.ModuleListener;
 import me.pollos.polloshook.impl.events.update.UpdateEvent;
 import me.pollos.polloshook.impl.module.render.newchunks.util.ChunkData;
+import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.world.chunk.WorldChunk;
@@ -15,38 +15,25 @@ public class ListenerUpdate extends ModuleListener<NewChunks, UpdateEvent> {
    public ListenerUpdate(NewChunks module) {
       super(module, UpdateEvent.class);
    }
-   ArrayList blocks;
 
    public void call(UpdateEvent event) {
-      ChunkPos chunkPos = mc.player.getChunkPos();
-      List<WorldChunk> chonkers = this.loopChunks(chunkPos.x, chunkPos.z);
-      Iterator var4 = chonkers.iterator();
+      ChunkPos playerChunk = mc.player.getChunkPos();
+      String dimension = mc.world.getRegistryKey().getValue().getPath();
+      for (WorldChunk chunk : this.loopChunks(playerChunk.x, playerChunk.z)) {
+         List<Block> blocks = new ArrayList<>();
+         Arrays.stream(chunk.getSectionArray()).forEach(section ->
+            section.getBlockStateContainer().forEachValue(state -> blocks.add(state.getBlock()))
+         );
+         if (dimension.equals("overworld") && !blocks.contains(Blocks.COPPER_ORE)) {
+            continue;
+         }
+         if (dimension.equals("the_nether") && !blocks.contains(Blocks.NETHER_GOLD_ORE)) {
+            continue;
+         }
 
-      while (true) {
-         WorldChunk chunk;
-         do {
-            do {
-               do {
-                  if (!var4.hasNext()) {
-                     return;
-                  }
-
-                  chunk = (WorldChunk) var4.next();
-               } while (chunk == null);
-
-               blocks = new ArrayList();
-               Arrays.stream(chunk.getSectionArray()).forEach((section) -> {
-                  section.getBlockStateContainer().forEachValue((blockState) -> {
-                     blocks.add(blockState.getBlock());
-                  });
-               });
-            } while (!blocks.contains(Blocks.DEEPSLATE)
-                  && mc.world.getRegistryKey().getValue().getPath().equals("overworld"));
-         } while (!blocks.contains(Blocks.ANCIENT_DEBRIS)
-               && mc.world.getRegistryKey().getValue().getPath().equals("the_nether"));
-         ChunkData chunkData = new ChunkData(chunk.getPos().x, chunk.getPos().z);
-         if (!((NewChunks) this.module).chunkDataList.contains(chunkData)) {
-            ((NewChunks) this.module).chunkDataList.add(chunkData);
+         ChunkData data = new ChunkData(chunk.getPos().x, chunk.getPos().z);
+         if (!this.module.chunkDataList.contains(data)) {
+            this.module.chunkDataList.add(data);
          }
       }
    }

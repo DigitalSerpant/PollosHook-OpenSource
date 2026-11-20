@@ -22,7 +22,7 @@ public class ListenerLeave extends ModuleListener<LogoutSpots, ConnectionEvent.L
 
          if (text != null) {
             ClientLogger var10000 = ClientLogger.getLogger();
-            String var10001 = String.valueOf(Formatting.WHITE);
+            String var10001 = String.valueOf(Formatting.YELLOW);
             var10000.log(var10001 + text);
          }
       }

@@ -318,7 +318,7 @@ public class ListenerRender extends ModuleListener<Chams, RenderEvent> {
       case EAST:
          var10000 = 90.0F;
          break;
-      case WEST:
+      case NORTH:
          var10000 = 270.0F;
          break;
       case SOUTH:

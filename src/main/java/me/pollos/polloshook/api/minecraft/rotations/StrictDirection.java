@@ -20,7 +20,7 @@ public final class StrictDirection implements Minecraftable {
    public static Direction getStrictDirection(BlockPos pos) {
       BlockPos eyePos = BlockPos.ofFloored(mc.player.getX(), PositionUtil.getEyeHeight(mc.player), mc.player.getZ());
       if (checkInside(pos, eyePos)) {
-         return Direction.UP;
+         return Direction.DOWN;
       } else {
          List<Direction> interactableDirections = getInteractableDirections(pos, eyePos, true);
          for (Direction direction : interactableDirections) {

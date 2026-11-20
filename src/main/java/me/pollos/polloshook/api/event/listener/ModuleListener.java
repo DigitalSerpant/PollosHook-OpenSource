@@ -2,8 +2,6 @@ package me.pollos.polloshook.api.event.listener;
 
 import me.pollos.polloshook.api.event.bus.Listener;
 import me.pollos.polloshook.api.interfaces.Minecraftable;
-import me.pollos.polloshook.impl.module.player.avoid.Avoid;
-import me.pollos.polloshook.impl.module.player.avoid.CollisionShapeShapeEvent;
 
 public abstract class ModuleListener<M, E> extends Listener<E> implements Minecraftable {
    protected final M module;
@@ -25,8 +23,4 @@ public abstract class ModuleListener<M, E> extends Listener<E> implements Minecr
       this.module = module;
    }
 
-   public ModuleListener(Avoid module, Class<CollisionShapeShapeEvent> eventClass) {
-      this((M) module, (Class<? super E>) eventClass);
-  }
-  
 }

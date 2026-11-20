@@ -42,7 +42,7 @@ public class ListenerTick extends SafeModuleListener<HoleESP, TickEvent> {
    }
 
    private boolean isVoid(BlockPos pos) {
-      return (mc.world.getBlockState(pos).getBlock() == Blocks.VOID_AIR || mc.world.getBlockState(pos).getBlock() != Blocks.ANVIL)
+      return mc.world.getBlockState(pos).getBlock() != Blocks.BEDROCK
              && pos.getY() < this.getMinY() + 1 && pos.getY() >= this.getMinY();
    }
    

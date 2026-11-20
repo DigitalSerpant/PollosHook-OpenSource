@@ -33,7 +33,7 @@ public class ListenerJoin extends ModuleListener<LogoutSpots, ConnectionEvent.Jo
             }
 
             ClientLogger var6 = ClientLogger.getLogger();
-            String var10001 = String.valueOf(Formatting.WHITE);
+            String var10001 = String.valueOf(Formatting.YELLOW);
             var6.log(var10001 + text);
          }
 

@@ -23,7 +23,7 @@ public class ListenerDisconnect extends ModuleListener<AutoReconnect, AutoReconn
             var10000 = "(" + info.address + ")";
             break;
          case ASTERISKS:
-            var10000 = "(" + info.address.replaceAll("[keyCodec-zA-Z0-9]", "*") + ")";
+            var10000 = "(" + info.address.replaceAll("[a-zA-Z0-9]", "*") + ")";
             break;
          default:
             var10000 = "";

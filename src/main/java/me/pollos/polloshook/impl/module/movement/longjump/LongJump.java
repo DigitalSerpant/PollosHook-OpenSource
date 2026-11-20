@@ -20,7 +20,7 @@ public class LongJump extends ToggleableModule {
       super(new String[]{"LongJump", "longjumper"}, Category.MOVEMENT);
       this.mode = new EnumValue(LongJumpMode.NORMAL, new String[]{"Mode", "m"});
       this.mini = (new Value(false, new String[]{"MiniJumps", "mini"})).setParent(this.mode, LongJumpMode.COWABUNGA, true);
-      this.boost = (new NumberValue(4.0F, 0.1F, 10.0F, 0.1F, new String[]{"Boost", "elementCodec", "factor"})).setParent(this.mode, LongJumpMode.COWABUNGA, true);
+      this.boost = (new NumberValue(4.0F, 0.1F, 10.0F, 0.1F, new String[]{"Boost", "b", "factor"})).setParent(this.mode, LongJumpMode.COWABUNGA, true);
       this.autoDisable = new Value(false, new String[]{"AutoDisable", "disable"});
       this.offerValues(new Value[]{this.mode, this.mini, this.boost, this.autoDisable});
       this.offerListeners(new Listener[]{new ListenerMove(this), new ListenerPosLook(this), new ListenerTick(this)});

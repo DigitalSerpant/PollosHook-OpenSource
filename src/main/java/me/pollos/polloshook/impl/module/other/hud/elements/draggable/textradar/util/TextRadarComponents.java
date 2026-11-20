@@ -28,7 +28,7 @@ public class TextRadarComponents {
             if (health > 16.0F) {
                return Formatting.GREEN;
             } else if (health > 12.0F) {
-               return Formatting.WHITE;
+               return Formatting.YELLOW;
             } else if (health > 8.0F) {
                return Formatting.GOLD;
             } else {
@@ -52,7 +52,7 @@ public class TextRadarComponents {
                   return Formatting.GREEN;
                case 3:
                case 4:
-                  return Formatting.WHITE;
+                  return Formatting.YELLOW;
                case 5:
                case 6:
                   return Formatting.GOLD;
@@ -67,8 +67,8 @@ public class TextRadarComponents {
    public static TextRadarComponents.TextRadarComponent getDistanceComp(float distance) {
       return new TextRadarComponents.TextRadarComponent() {
          public String getString() {
-            String var10000 = String.valueOf(Formatting.BOLD);
-            return var10000 + "[" + String.valueOf(this.getColor()) + String.format("%.1fm", distance) + String.valueOf(Formatting.BOLD) + "]";
+            String var10000 = String.valueOf(Formatting.GRAY);
+            return var10000 + "[" + String.valueOf(this.getColor()) + String.format("%.1fm", distance) + String.valueOf(Formatting.GRAY) + "]";
          }
 
          private Formatting getColor() {
@@ -77,7 +77,7 @@ public class TextRadarComponents {
             } else if (distance < 25.0F && distance >= 16.0F) {
                return Formatting.GOLD;
             } else {
-               return distance < 16.0F && distance >= 8.0F ? Formatting.WHITE : Formatting.RED;
+               return distance < 16.0F && distance >= 8.0F ? Formatting.YELLOW : Formatting.RED;
             }
          }
       };

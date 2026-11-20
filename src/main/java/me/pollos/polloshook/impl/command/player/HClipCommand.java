@@ -16,6 +16,6 @@ public class HClipCommand extends Command {
       double y = mc.player.getY();
       double z = mc.player.getZ();
       mc.player.setPosition(x + (double)distance * yaw, y, z + (double)distance * pitch);
-      return distance == 1.0F ? "HClipped keyCodec block" : "HClipped %s blocks".formatted(new Object[]{args[1]});
+      return distance == 1.0F ? "HClipped a block" : "HClipped %s blocks".formatted(new Object[]{args[1]});
    }
 }

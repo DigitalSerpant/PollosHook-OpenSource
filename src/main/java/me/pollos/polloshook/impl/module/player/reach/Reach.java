@@ -10,7 +10,7 @@ import me.pollos.polloshook.api.value.value.Value;
 
 public class Reach extends ToggleableModule {
    protected final NumberValue<Float> entities = new NumberValue(0.5F, 0.0F, 2.0F, 0.1F, new String[]{"Entities", "entity", "ent"});
-   protected final NumberValue<Float> blocks = new NumberValue(0.5F, 0.0F, 2.0F, 0.1F, new String[]{"Blocks", "elementCodec", "blocky"});
+   protected final NumberValue<Float> blocks = new NumberValue(0.5F, 0.0F, 2.0F, 0.1F, new String[]{"Blocks", "b", "blocky"});
    protected final NumberValue<Float> hitbox = new NumberValue(0.0F, 0.0F, 3.0F, 0.1F, new String[]{"HitboxExtend", "hitboxextension", "hitbox"});
 
    public Reach() {

@@ -1,6 +1,5 @@
 package me.pollos.polloshook.asm.mixins.network;
 
-import java.time.Instant;
 import java.util.Iterator;
 import me.pollos.polloshook.PollosHook;
 import me.pollos.polloshook.api.managers.Managers;
@@ -15,20 +14,16 @@ import net.minecraft.client.network.ClientCommonNetworkHandler;
 import net.minecraft.client.network.ClientConnectionState;
 import net.minecraft.client.network.ClientPlayNetworkHandler;
 import net.minecraft.network.ClientConnection;
-import net.minecraft.network.encryption.NetworkEncryptionUtils.SecureRandomUtil;
 import net.minecraft.network.message.LastSeenMessagesCollector;
-import net.minecraft.network.message.MessageBody;
-import net.minecraft.network.message.MessageSignatureData;
 import net.minecraft.network.message.MessageSignatureStorage;
-import net.minecraft.network.message.LastSeenMessagesCollector.LastSeenMessages;
 import net.minecraft.network.message.MessageChain.Packer;
-import net.minecraft.network.packet.c2s.play.ChatMessageC2SPacket;
 import net.minecraft.network.packet.s2c.play.GameJoinS2CPacket;
 import net.minecraft.network.packet.s2c.query.PingResultS2CPacket;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.ModifyVariable;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin({ClientPlayNetworkHandler.class})
@@ -85,27 +80,14 @@ public abstract class MixinClientPlayNetworkHandler extends ClientCommonNetworkH
 
    }
 
-   @Inject(
-      method = {"sendChatMessage"},
-      at = {@At(
-   value = "INVOKE",
-   target = "Lnet/minecraft/client/network/ClientPlayNetworkHandler;sendPacket(Lnet/minecraft/network/packet/Packet;)V"
-)},
-      cancellable = true
-   )
-   private void sendChatMessageHook(String content, CallbackInfo ci) {
-      SendChatMessageEvent sendChatMessageEvent = new SendChatMessageEvent(content);
-      PollosHook.getEventBus().dispatch(sendChatMessageEvent);
-      if (sendChatMessageEvent.isCanceled()) {
-         ci.cancel();
-         Instant instant = Instant.now();
-         long l = SecureRandomUtil.nextLong();
-         LastSeenMessages lastSeenMessages = this.lastSeenMessagesCollector.collect();
-        // MessageSignatureData messageSignatureData = this.messagePacker.pack(new MessageBody(content, instant, l, lastSeenMessages.comp_1073()));
-        // this.sendPacket(new ChatMessageC2SPacket(sendChatMessageEvent.getMessage(), instant, l, messageSignatureData, lastSeenMessages.comp_1074()));
-        // TODO: Shitty code im not going to worry about for now.
+   @ModifyVariable(method = "sendChatMessage", at = @At("HEAD"), argsOnly = true, ordinal = 0)
+   private String modifyChatMessage(String content) {
+      if (content.startsWith(Managers.getCommandManager().getPrefix())) {
+         return content;
       }
-
+      SendChatMessageEvent event = new SendChatMessageEvent(content);
+      PollosHook.getEventBus().dispatch(event);
+      return event.isCanceled() ? event.getMessage() : content;
    }
 
    public Packer getMessageChainPacker() {

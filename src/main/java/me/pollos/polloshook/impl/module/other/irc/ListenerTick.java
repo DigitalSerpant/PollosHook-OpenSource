@@ -71,7 +71,7 @@ public class ListenerTick extends ModuleListener<IrcModule, TickEvent> {
 
       if (mc.player != null && mc.world != null && !((IrcModule)this.module).offlineMessages.isEmpty()) {
          MutableText mutableText = Text.literal("You have %s offline message(s)".formatted(new Object[]{((IrcModule)this.module).offlineMessages.size()}));
-         HoverEvent hoverEvent = new HoverEvent(Action.SHOW_TEXT, Text.literal(String.valueOf(Formatting.GRAY) + "Click to show all messages"));
+         HoverEvent hoverEvent = new HoverEvent(Action.SHOW_TEXT, Text.literal(String.valueOf(Formatting.WHITE) + "Click to show all messages"));
          RunnableClickEvent clickEvent = new RunnableClickEvent(() -> {
             Map<String, Long> remove = new HashMap(((IrcModule)this.module).offlineMessages);
             Iterator var2 = remove.entrySet().iterator();
@@ -81,7 +81,7 @@ public class ListenerTick extends ModuleListener<IrcModule, TickEvent> {
                String key = (String)entry.getKey();
                Long time = (Long)entry.getValue();
                Action var10002 = Action.SHOW_TEXT;
-               String var10003 = String.valueOf(Formatting.GRAY);
+               String var10003 = String.valueOf(Formatting.WHITE);
                HoverEvent messageHover = new HoverEvent(var10002, Text.literal(var10003 + this.getTimeAgo(time)));
                MutableText messageText = Text.literal(key).setStyle(Style.EMPTY.withHoverEvent(messageHover));
                PollosHookThread.SCHEDULED_EXECUTOR.schedule(() -> {

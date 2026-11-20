@@ -34,15 +34,15 @@ public class ListenerPop extends ModuleListener<PopCounter, TotemPopEvent> {
       }
 
       int color = !isFriend && !isSelf ? Manager.get().getThemeColor().getColor().getRGB() : Formatting.AQUA.getColorValue();
-      MutableText formatName = Text.empty().append(Text.literal(isHidden ? "You" : name).formatted(new Formatting[]{Formatting.BOLD, Formatting.GRAY})).append(Text.literal(" ").formatted(Formatting.RESET));
+      MutableText formatName = Text.empty().append(Text.literal(isHidden ? "You" : name).formatted(new Formatting[]{Formatting.BOLD, Formatting.WHITE})).append(Text.literal(" ").formatted(Formatting.RESET));
       MutableText ordinalText;
       switch((PopCounterStyle)((PopCounter)this.module).getStyle().getValue()) {
       case CARDINAL:
-         ordinalText = formatName.append(Text.literal(isHidden ? "popped " : "has popped ").withColor(color)).append(Text.literal(String.valueOf(pops)).formatted(new Formatting[]{Formatting.BOLD, Formatting.GRAY})).append(Text.literal(pops == 1 ? " totem" : " totems").withColor(color));
+         ordinalText = formatName.append(Text.literal(isHidden ? "popped " : "has popped ").withColor(color)).append(Text.literal(String.valueOf(pops)).formatted(new Formatting[]{Formatting.BOLD, Formatting.WHITE})).append(Text.literal(pops == 1 ? " totem" : " totems").withColor(color));
          ClientLogger.getLogger().log((Text)ordinalText, -entity.getId());
          break;
       case ORDINAL:
-         ordinalText = formatName.append(Text.literal(isHidden ? "have popped your " : "has popped their ").withColor(color)).append(Text.literal(pops + TextUtil.toOrdinal(pops)).formatted(new Formatting[]{Formatting.BOLD, Formatting.GRAY})).append(Text.literal(" totem").withColor(color));
+         ordinalText = formatName.append(Text.literal(isHidden ? "have popped your " : "has popped their ").withColor(color)).append(Text.literal(pops + TextUtil.toOrdinal(pops)).formatted(new Formatting[]{Formatting.BOLD, Formatting.WHITE})).append(Text.literal(" totem").withColor(color));
          ClientLogger.getLogger().log((Text)ordinalText, -entity.getId());
       }
 

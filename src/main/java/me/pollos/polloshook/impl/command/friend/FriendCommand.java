@@ -11,7 +11,7 @@ public class FriendCommand extends Command {
    public FriendCommand() {
       super(new String[]{"Friend", "f", "frien", "amigo"}, new Argument("[add/del/list]") {
          public String predict(String currentArg) {
-            if (currentArg.toLowerCase().startsWith("keyCodec")) {
+            if (currentArg.toLowerCase().startsWith("a")) {
                return "add";
             } else if (currentArg.toLowerCase().startsWith("d")) {
                return "del";
@@ -35,7 +35,7 @@ public class FriendCommand extends Command {
 
             message = args[3];
             Managers.getFriendManager().addFriend(name, message);
-            return String.format("Added %s%s%s as keyCodec friend with alias [%s]", Formatting.AQUA, name, Formatting.GRAY, message);
+            return String.format("Added %s%s%s as a friend with alias [%s]", Formatting.AQUA, name, Formatting.WHITE, message);
          }
 
          if (args.length == 3) {
@@ -44,7 +44,7 @@ public class FriendCommand extends Command {
             }
 
             Managers.getFriendManager().addFriend(name, name);
-            return String.format("Added %s%s%s as keyCodec friend", Formatting.AQUA, name, Formatting.GRAY);
+            return String.format("Added %s%s%s as a friend", Formatting.AQUA, name, Formatting.WHITE);
          }
       }
 
@@ -63,7 +63,7 @@ public class FriendCommand extends Command {
       if (args.length == 2 && argument.equalsIgnoreCase("list")) {
          StringJoiner stringJoiner = new StringJoiner(", ");
          Managers.getFriendManager().getFriends().forEach((frd) -> {
-            String format = String.format("\n%s %s[%s%s%s]%s", frd.getAlias(), Formatting.GRAY, Formatting.GRAY, frd.getLabel(), Formatting.GRAY, Formatting.GRAY);
+            String format = String.format("\n%s %s[%s%s%s]%s", frd.getAlias(), Formatting.GRAY, Formatting.WHITE, frd.getLabel(), Formatting.GRAY, Formatting.WHITE);
             stringJoiner.add(format);
          });
          message = String.valueOf(stringJoiner);

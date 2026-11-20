@@ -140,7 +140,7 @@ public class ConfigComponent extends Component {
       long weeks = days / 7L;
       days %= 7L;
       if (months > 0L) {
-         return months == 1L ? "keyCodec month ago" : months + " months ago";
+         return months == 1L ? "a month ago" : months + " months ago";
       } else if (weeks > 0L) {
          return weeks == 1L ? "last week" : weeks + " weeks ago";
       } else if (days > 0L) {
@@ -148,7 +148,7 @@ public class ConfigComponent extends Component {
       } else if (hours > 0L) {
          return hours == 1L ? "an hour ago" : hours + " hours ago";
       } else if (minutes > 0L) {
-         return minutes == 1L ? "keyCodec minute ago" : minutes + " minutes ago";
+         return minutes == 1L ? "a minute ago" : minutes + " minutes ago";
       } else {
          return "just now";
       }

@@ -22,7 +22,7 @@ public class ListenerChat extends ModuleListener<IrcModule, PacketEvent.Send<Cha
       if (message.startsWith(prefix) || ircFlag && ((IrcModule)this.module).getValidMessage() != null && message.equalsIgnoreCase(((IrcModule)this.module).getValidMessage())) {
          event.setCanceled(true);
          if (!((IrcModule)this.module).isInsideRoom()) {
-            ClientLogger.getLogger().log("You are not inside of keyCodec chat room yet, please wait");
+            ClientLogger.getLogger().log("You are not inside of a chat room yet, please wait");
             return;
          }
 

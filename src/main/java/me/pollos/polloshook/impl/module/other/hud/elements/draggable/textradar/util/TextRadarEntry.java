@@ -44,7 +44,7 @@ public record TextRadarEntry(String label, float distance, float health, int pop
 
       sb.append(label);
       if (showHealth || showPops) {
-         sb.append(Formatting.BOLD).append(" (");
+         sb.append(Formatting.GRAY).append(" (");
          if (showHealth) {
             sb.append(health);
          }
@@ -57,7 +57,7 @@ public record TextRadarEntry(String label, float distance, float health, int pop
             sb.append(pops);
          }
 
-         sb.append(Formatting.BOLD).append(")");
+         sb.append(Formatting.GRAY).append(")");
       }
 
       return sb.toString();

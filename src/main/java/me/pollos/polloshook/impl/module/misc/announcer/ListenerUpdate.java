@@ -14,8 +14,8 @@ import me.pollos.polloshook.impl.module.misc.announcer.modes.AnnouncerMode;
 import net.minecraft.util.Formatting;
 
 public class ListenerUpdate extends SafeModuleListener<Announcer, UpdateEvent> {
-   private final String[] sunriseMessages = new String[]{"Goodmoorning!", "Top of the morning to ya!", "Its time for keyCodec great day everyone!", "You survived another night!", "Goodmorning everyone!", "Today is going to be keyCodec great day everyone!"};
-   private final String[] middleDayMessages = new String[]{"Let's go to the beach!", "It's keyCodec great day for the beach!", "Grab your sunglasses everyone!", "Enjoy the great day everyone!", "It's the brightest time of the day!", "Let's go tanning!"};
+   private final String[] sunriseMessages = new String[]{"Goodmoorning!", "Top of the morning to ya!", "Its time for a great day everyone!", "You survived another night!", "Goodmorning everyone!", "Today is going to be a great day everyone!"};
+   private final String[] middleDayMessages = new String[]{"Let's go to the beach!", "It's a great day for the beach!", "Grab your sunglasses everyone!", "Enjoy the great day everyone!", "It's the brightest time of the day!", "Let's go tanning!"};
    private final String[] noonMessages = new String[]{"Let's go grab lunch!", "Lunch time!", "Good afternoon everyone!", "Good afternoon!", "Halfway through the day everyone!", "Half of the day has passed!"};
    private final String[] sunsetMessages = new String[]{"The sun is setting!", "Enjoy the sunset everybody!", "The day is coming to an end everyone!", "Time to get ready for bed!", "Almost time to sleep everyone!"};
    private final String[] nightTimeMessages = new String[]{"Let's get comfy!", "Time to go to sleep everyone!", "Sunset has now ended, Muslims may now eat their dinner", "It's dark outside...", "It's the oppsite of noon!", "Zombies will now begin to spawn, take shelter everyone!"};

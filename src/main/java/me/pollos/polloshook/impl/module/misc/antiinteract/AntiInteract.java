@@ -24,7 +24,7 @@ public class AntiInteract extends ToggleableModule {
 
    public AntiInteract() {
       super(new String[]{"AntiInteract", "nointeract"}, Category.MISC);
-      this.itemBlackList = Arrays.asList(Items.GOLDEN_APPLE, Items.ENCHANTED_GOLDEN_APPLE, Items.CHORUS_FRUIT, Items.FISHING_ROD, Items.ENDER_PEARL, Items.BOW);
+      this.itemBlackList = Arrays.asList(Items.POTION, Items.SPLASH_POTION, Items.LINGERING_POTION, Items.EXPERIENCE_BOTTLE, Items.ENDER_PEARL, Items.BOW);
       this.offerValues(new Value[]{this.food, this.packets, this.shulker});
       this.offerListeners(new Listener[]{new ListenerInteract(this), new ListenerInteractBlock(this)});
    }

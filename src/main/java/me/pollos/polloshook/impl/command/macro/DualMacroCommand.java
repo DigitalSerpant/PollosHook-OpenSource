@@ -18,7 +18,7 @@ public class DualMacroCommand extends Command {
    public DualMacroCommand() {
       super(new String[]{"DualMacro", "dualmacros"}, new Argument("[add/del/list/clear]") {
          public String predict(String currentArg) {
-            if (currentArg.toLowerCase().startsWith("keyCodec")) {
+            if (currentArg.toLowerCase().startsWith("a")) {
                return "add";
             } else if (currentArg.toLowerCase().startsWith("d")) {
                return "del";

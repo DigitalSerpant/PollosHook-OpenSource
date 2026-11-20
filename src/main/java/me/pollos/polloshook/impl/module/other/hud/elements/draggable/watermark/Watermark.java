@@ -53,7 +53,7 @@ public class Watermark extends DraggableHUDModule {
       if (!(Boolean)this.version.getValue()) {
          return "";
       } else {
-         return (Boolean)this.whiteVersion.getValue() ? " " + String.valueOf(Formatting.GRAY) + "v2.8.5" : " v2.8.5";
+         return (Boolean)this.whiteVersion.getValue() ? " " + String.valueOf(Formatting.WHITE) + "v2.8.5" : " v2.8.5";
       }
    }
 
@@ -65,7 +65,7 @@ public class Watermark extends DraggableHUDModule {
          DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy HH:mm");
          String var10000;
          if ((Boolean)this.gray.getValue()) {
-            var10000 = String.valueOf(Formatting.BOLD);
+            var10000 = String.valueOf(Formatting.GRAY);
             return " " + var10000 + now.format(formatter);
          } else {
             var10000 = now.format(formatter);

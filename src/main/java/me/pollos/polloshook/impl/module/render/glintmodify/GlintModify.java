@@ -19,7 +19,7 @@ public class GlintModify extends ToggleableModule {
 
    public GlintModify() {
       super(new String[]{"GlintModify", "colorenchant", "enchantcol", "colorglint"}, Category.RENDER);
-      this.angle = (new NumberValue(0.17453292F, 0.0F, 10.0F, 0.001F, new String[]{"Angle", "keyCodec"})).setParent(this.rotateAngle);
+      this.angle = (new NumberValue(0.17453292F, 0.0F, 10.0F, 0.001F, new String[]{"Angle", "a"})).setParent(this.rotateAngle);
       this.entityScale = new NumberValue(0.16F, 0.0F, 1.0F, 0.01F, new String[]{"EntityScale", "entitys", "entity"});
       this.glintScale = new NumberValue(8.0F, 0.0F, 16.0F, 0.1F, new String[]{"GlintScale", "glints", "glint"});
       this.offerValues(new Value[]{this.armour, this.color, this.rotateAngle, this.angle, this.entityScale, this.glintScale});

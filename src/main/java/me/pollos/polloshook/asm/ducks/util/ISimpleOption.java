@@ -1,5 +1,5 @@
 package me.pollos.polloshook.asm.ducks.util;
 
 public interface ISimpleOption<T> {
-   void setValue(T var1);
+   void polloshook$setValue(T value);
 }

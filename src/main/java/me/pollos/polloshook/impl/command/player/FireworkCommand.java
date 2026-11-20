@@ -107,12 +107,12 @@ public class FireworkCommand extends Command {
 
             if (args.length <= 1) {
                this.useFirework(fast, slot, true);
-               return "Used keyCodec firework";
+               return "Used a firework";
             } else {
                String amountS = args[1];
                this.maxClicks = MathUtil.intFromString(amountS);
                PollosHook.getEventBus().register(this.tickEventListener);
-               return "Attempting to use %s%s%s firework%s".formatted(new Object[]{Formatting.GREEN, this.maxClicks, Formatting.GRAY, this.maxClicks == 1 ? "" : "s"});
+               return "Attempting to use %s%s%s firework%s".formatted(new Object[]{Formatting.GREEN, this.maxClicks, Formatting.WHITE, this.maxClicks == 1 ? "" : "s"});
             }
          }
       }

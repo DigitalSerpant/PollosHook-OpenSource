@@ -27,7 +27,7 @@ public class VisualRange extends ToggleableModule {
    public VisualRange() {
       super(new String[]{"VisualRange", "visualrangenotify", "visrange"}, Category.MISC);
       this.onlyChunkLeave = (new Value(false, new String[]{"OnlyLeavingChunk", "onlyleaving", "onlychunk"})).setParent(this.left);
-      this.onlyIfArmor = new Value(false, new String[]{"OnlyIfArmor", "armor", "keyCodec"});
+      this.onlyIfArmor = new Value(false, new String[]{"OnlyIfArmor", "armor", "a"});
       this.noFriends = new Value(false, new String[]{"NoFriends", "nofrds", "f"});
       this.direction = new Value(false, new String[]{"Direction", "dir", "d"});
       this.onlyOffScreen = (new Value(false, new String[]{"OnlyOffScreen", "offscreen", "screen"})).setParent(this.direction);
@@ -45,7 +45,7 @@ public class VisualRange extends ToggleableModule {
          message.append(dirString);
       }
 
-      Formatting color = Managers.getFriendManager().isFriend(player) ? Formatting.AQUA : Formatting.GRAY;
+      Formatting color = Managers.getFriendManager().isFriend(player) ? Formatting.AQUA : Formatting.WHITE;
       String var10000 = String.valueOf(color);
       return var10000 + message.toString();
    }

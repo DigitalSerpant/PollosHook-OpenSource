@@ -5,8 +5,8 @@ import net.minecraft.util.Formatting;
 
 public enum BracketColor {
    DARK_GRAY(Formatting.DARK_GRAY),
-   GRAY(Formatting.BOLD),
-   WHITE(Formatting.GRAY);
+   GRAY(Formatting.GRAY),
+   WHITE(Formatting.WHITE);
 
    private final Formatting formatting;
 

@@ -5,6 +5,6 @@ import net.minecraft.util.Formatting;
 
 public class WhitePreset extends StatusEffectPreset {
    protected Formatting getTimeColor() {
-      return Formatting.GRAY;
+      return Formatting.WHITE;
    }
 }

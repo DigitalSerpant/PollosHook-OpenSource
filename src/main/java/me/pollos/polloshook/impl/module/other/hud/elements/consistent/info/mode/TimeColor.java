@@ -4,8 +4,8 @@ package me.pollos.polloshook.impl.module.other.hud.elements.consistent.info.mode
 import net.minecraft.util.Formatting;
 
 public enum TimeColor {
-   WHITE(Formatting.GRAY),
-   GRAY(Formatting.BOLD),
+   WHITE(Formatting.WHITE),
+   GRAY(Formatting.GRAY),
    NONE(Formatting.RESET);
 
    final Formatting format;

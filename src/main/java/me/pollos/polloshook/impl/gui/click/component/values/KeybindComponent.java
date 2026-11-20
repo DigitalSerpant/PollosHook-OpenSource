@@ -31,7 +31,7 @@ public class KeybindComponent extends ValueComponent<Keybind, KeybindValue> {
       super.render(context, mouseX, mouseY, delta);
       boolean hovered = Render2DMethods.mouseWithinBounds((double)mouseX, (double)mouseY, (double)(this.getFinishedX() + 5.0F), (double)(this.getFinishedY() + 1.0F), (double)(this.getWidth() - 10.0F), (double)(this.getHeight() - 2.0F));
       Render2DMethods.drawRect(context, this.commonRenderRectangle(), hovered ? this.getColor().darker().getRGB() : this.getColor().getRGB());
-      Managers.getTextManager().drawString((DrawContext)context, this.isBinding() ? "Press keyCodec key" + Dots.get3Dots() : this.getKeybindValue().getLabel() + ": " + (((Keybind)this.getKeybindValue().getValue()).getKey() == -1 ? "None" : KeyboardUtil.getKeyNameFromNumber(((Keybind)this.getKeybindValue().getValue()).getKey(), false).toUpperCase()), (double)((int)(this.getFinishedX() + 4.5F)), (double)((int)(this.getFinishedY() + this.getHeight() / 2.0F - (float)(Managers.getTextManager().getHeight() >> 1))), -1);
+      Managers.getTextManager().drawString((DrawContext)context, this.isBinding() ? "Press a key" + Dots.get3Dots() : this.getKeybindValue().getLabel() + ": " + (((Keybind)this.getKeybindValue().getValue()).getKey() == -1 ? "None" : KeyboardUtil.getKeyNameFromNumber(((Keybind)this.getKeybindValue().getValue()).getKey(), false).toUpperCase()), (double)((int)(this.getFinishedX() + 4.5F)), (double)((int)(this.getFinishedY() + this.getHeight() / 2.0F - (float)(Managers.getTextManager().getHeight() >> 1))), -1);
    }
 
    public void keyPressed(int keyCode, int scanCode, int modifiers) {

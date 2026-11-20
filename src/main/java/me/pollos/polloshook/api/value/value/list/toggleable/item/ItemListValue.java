@@ -114,7 +114,7 @@ public class ItemListValue extends ListValue<ToggleableItem> {
                   }
 
                   items.add(new ToggleableItem(item, true));
-                  return "Added %s%s%s to the block list".formatted(new Object[]{Formatting.GREEN, itemLabel, Formatting.GRAY});
+                  return "Added %s%s%s to the block list".formatted(new Object[]{Formatting.BLUE, itemLabel, Formatting.WHITE});
                case 1:
                case 2:
                case 3:
@@ -127,7 +127,7 @@ public class ItemListValue extends ListValue<ToggleableItem> {
                   items.removeIf((ti) -> {
                      return ti.getItem().equals(item);
                   });
-                  return "Removed %s%s%s from the block list".formatted(new Object[]{Formatting.RED, itemLabel, Formatting.GRAY});
+                  return "Removed %s%s%s from the block list".formatted(new Object[]{Formatting.RED, itemLabel, Formatting.WHITE});
                default:
                   return "Invalid Arguments";
                }

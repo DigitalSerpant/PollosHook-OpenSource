@@ -5,7 +5,7 @@ import net.minecraft.util.Formatting;
 
 public class BeefPreset extends BracketedPreset {
    protected Formatting getBracketFormatting() {
-      return Formatting.BOLD;
+      return Formatting.GRAY;
    }
 
    protected String getLeftBracket() {
@@ -17,11 +17,11 @@ public class BeefPreset extends BracketedPreset {
    }
 
    protected Formatting getTimeColor() {
-      return Formatting.GRAY;
+      return Formatting.WHITE;
    }
 
    protected String getTimeString() {
-      String var10000 = String.valueOf(Formatting.BOLD);
-      return "<amp>" + var10000 + "|" + String.valueOf(Formatting.GRAY) + "<time>";
+      String var10000 = String.valueOf(Formatting.GRAY);
+      return "<amp>" + var10000 + "|" + String.valueOf(Formatting.WHITE) + "<time>";
    }
 }

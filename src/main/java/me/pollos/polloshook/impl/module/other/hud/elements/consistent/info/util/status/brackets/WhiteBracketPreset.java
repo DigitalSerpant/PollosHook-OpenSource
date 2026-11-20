@@ -5,7 +5,7 @@ import net.minecraft.util.Formatting;
 
 public class WhiteBracketPreset extends BracketedPreset {
    protected Formatting getBracketFormatting() {
-      return Formatting.BOLD;
+      return Formatting.GRAY;
    }
 
    protected String getLeftBracket() {
@@ -17,6 +17,6 @@ public class WhiteBracketPreset extends BracketedPreset {
    }
 
    protected Formatting getTimeColor() {
-      return Formatting.GRAY;
+      return Formatting.WHITE;
    }
 }

@@ -45,7 +45,7 @@ public class HoleUtil implements Minecraftable {
    }
 
    public static boolean isWeb(BlockPos pos) {
-      return mc.world.getBlockState(pos).getBlock() == Blocks.COBWEB || mc.world.getBlockState(pos).getBlock() == Blocks.OBSIDIAN || mc.world.getBlockState(pos).getBlock() == Blocks.ANVIL;
+      return mc.world.getBlockState(pos).getBlock() == Blocks.COBWEB || mc.world.getBlockState(pos).getBlock() == Blocks.OBSIDIAN || mc.world.getBlockState(pos).getBlock() == Blocks.BEDROCK;
    }
 
    public static boolean isObbyHole(BlockPos pos) {
@@ -114,7 +114,7 @@ public class HoleUtil implements Minecraftable {
          for(int var3 = 0; var3 < var2; ++var3) {
             BlockPos off = var1[var3];
             Block block = mc.world.getBlockState(pos.add(off)).getBlock();
-            if (block != Blocks.TALL_GRASS && block != Blocks.GLASS && block != Blocks.VINE && block != Blocks.CHEST && block != Blocks.CACTUS && block != Blocks.SUGAR_CANE && block != Blocks.SWEET_BERRY_BUSH && block != Blocks.CAVE_VINES && !BlockUtil.isSafe(pos.add(off))) {
+            if (block != Blocks.STONE && block != Blocks.DIRT && block != Blocks.NETHERRACK && block != Blocks.COBBLESTONE && block != Blocks.GRAVEL && block != Blocks.END_STONE && block != Blocks.DEEPSLATE && block != Blocks.TUFF && !BlockUtil.isSafe(pos.add(off))) {
                return false;
             }
          }

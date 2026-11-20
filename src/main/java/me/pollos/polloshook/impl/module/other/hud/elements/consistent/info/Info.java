@@ -120,19 +120,19 @@ public class Info extends HUDModule {
       List<String> texts = new ArrayList();
       String timeStr;
       if ((Boolean)this.btc.getValue()) {
-         timeStr = "$BTC: %s%.1f".formatted(new Object[]{Formatting.GRAY, this.price});
+         timeStr = "$BTC: %s%.1f".formatted(new Object[]{Formatting.WHITE, this.price});
          texts.add(timeStr);
       }
 
       String var10000;
       if ((Boolean)this.serverBrand.getValue()) {
-         var10000 = String.valueOf(Formatting.GRAY);
+         var10000 = String.valueOf(Formatting.WHITE);
          timeStr = "ServerBrand: " + var10000 + mc.getNetworkHandler().getBrand();
          texts.add(timeStr);
       }
 
       if ((Boolean)this.biome.getValue()) {
-         var10000 = String.valueOf(Formatting.GRAY);
+         var10000 = String.valueOf(Formatting.WHITE);
          timeStr = "Biome: " + var10000 + this.formatBiome(this.getBiomeString(mc.world.getBiome(Interpolation.getRenderEntity().getBlockPos())));
          texts.add(timeStr);
       }
@@ -144,7 +144,7 @@ public class Info extends HUDModule {
          double div = 1.388888888888889E-5D;
          float timer = Managers.getTimerManager().getTimer();
          double speed = dist / div * (double)timer;
-         var10000 = String.valueOf(Formatting.GRAY);
+         var10000 = String.valueOf(Formatting.WHITE);
          String kmhStr = "Speed: " + var10000 + String.format("%.2f", speed) + "km/h";
          texts.add(kmhStr);
       }
@@ -156,18 +156,18 @@ public class Info extends HUDModule {
 
             try {
                DateTimeFormatter dtf = DateTimeFormatter.ofPattern(fpsStr);
-               timeStr = "Time: " + String.valueOf(Formatting.GRAY) + LocalDateTime.now().format(dtf);
+               timeStr = "Time: " + String.valueOf(Formatting.WHITE) + LocalDateTime.now().format(dtf);
             } catch (Exception var20) {
                timeStr = String.valueOf(Formatting.RED) + "Invalid Formatting :(";
                String link = "https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/time/format/DateTimeFormatter.html";
 
                Style copyStyle = Style.EMPTY.withClickEvent(new ClickEvent(Action.OPEN_URL, link));
-               Text text2 = Text.of("%sInvalid formatting %s[%sClick to open guide%s]".formatted(new Object[]{Formatting.RED, Formatting.BOLD, Formatting.GRAY, Formatting.BOLD})).copy().setStyle(copyStyle);
+               Text text2 = Text.of("%sInvalid formatting %s[%sClick to open guide%s]".formatted(new Object[]{Formatting.RED, Formatting.GRAY, Formatting.WHITE, Formatting.GRAY})).copy().setStyle(copyStyle);
                ClientLogger.getLogger().log((Text)text2);
             }
          } else {
             DateTimeFormatter dtf = DateTimeFormatter.ofPattern("hh:mm");
-            timeStr = "Time: " + String.valueOf(Formatting.GRAY) + LocalDateTime.now().format(dtf);
+            timeStr = "Time: " + String.valueOf(Formatting.WHITE) + LocalDateTime.now().format(dtf);
          }
 
          texts.add(timeStr);
@@ -176,7 +176,7 @@ public class Info extends HUDModule {
       if (this.durability.getValue() != DurabilityMode.OFF) {
          ItemStack stack = mc.player.getMainHandStack();
          if (stack.isDamageable()) {
-            fpsStr = "Durability: " + String.valueOf(Formatting.GRAY);
+            fpsStr = "Durability: " + String.valueOf(Formatting.WHITE);
             switch((DurabilityMode)this.durability.getValue()) {
             case PERCENT:
                var10000 = fpsStr + "%.1f%%".formatted(new Object[]{ItemUtil.getDamageInPercent(mc.player.getMainHandStack())});
@@ -198,7 +198,7 @@ public class Info extends HUDModule {
 
       boolean singlePlayer = !((FastLatency)Managers.getModuleManager().get(FastLatency.class)).isEnabled() && mc.isInSingleplayer();
       if ((Boolean)this.ping.getValue() && !singlePlayer) {
-         var10000 = String.valueOf(Formatting.GRAY);
+         var10000 = String.valueOf(Formatting.WHITE);
          fpsStr = "Ping: " + var10000 + NetworkUtil.getPing() + "ms";
          texts.add(fpsStr);
       }
@@ -209,7 +209,7 @@ public class Info extends HUDModule {
       }
 
       if ((Boolean)this.fps.getValue()) {
-         var10000 = String.valueOf(Formatting.GRAY);
+         var10000 = String.valueOf(Formatting.WHITE);
          fpsStr = "FPS: " + var10000 + Manager.get().getFpsCalcThread().getFpsCount();
          texts.add(fpsStr);
       }
@@ -230,11 +230,11 @@ public class Info extends HUDModule {
 
    private String getTpsString() {
       float tpsFactor = (Boolean)this.serverWorldTPS.getValue() ? Managers.getTpsManager().getServerWorldTPS() : Managers.getTpsManager().getTps();
-      String var10000 = String.valueOf(Formatting.GRAY);
+      String var10000 = String.valueOf(Formatting.WHITE);
       String tpsStr = "TPS: " + var10000 + String.format("%.2f", tpsFactor);
       if ((Boolean)this.averageTPS.getValue()) {
-         String avgTpsStr = "%s%.2f".formatted(new Object[]{Formatting.GRAY, Managers.getTpsManager().getCurrentTps()});
-         return tpsStr + " " + String.valueOf(Formatting.BOLD) + "(" + avgTpsStr + String.valueOf(Formatting.BOLD) + ")";
+         String avgTpsStr = "%s%.2f".formatted(new Object[]{Formatting.WHITE, Managers.getTpsManager().getCurrentTps()});
+         return tpsStr + " " + String.valueOf(Formatting.GRAY) + "(" + avgTpsStr + String.valueOf(Formatting.GRAY) + ")";
       } else {
          return tpsStr;
       }

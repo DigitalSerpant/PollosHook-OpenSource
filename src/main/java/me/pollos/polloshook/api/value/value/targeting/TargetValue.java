@@ -213,7 +213,7 @@ public class TargetValue extends Value<TargetPreset> implements Minecraftable {
    private String getStringForBool(boolean bool, String label) {
       Formatting color = bool ? Formatting.GREEN : Formatting.RED;
       String var10000 = String.valueOf(color);
-      return var10000 + label + String.valueOf(Formatting.GRAY);
+      return var10000 + label + String.valueOf(Formatting.WHITE);
    }
 
    public void setValue(TargetPreset value) {

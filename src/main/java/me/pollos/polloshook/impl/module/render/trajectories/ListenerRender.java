@@ -196,7 +196,7 @@ public class ListenerRender extends ModuleListener<Trajectories, RenderEvent> {
          ItemStack projectile = RangedWeaponItem.getHeldProjectile(mc.player, crossbowItem.getHeldProjectiles());
          return projectile.getItem() instanceof FireworkRocketItem && CrossbowItem.isCharged(mc.player.getMainHandStack()) ? 0.0D : -0.12999999523162842D;
       } else {
-         return item == Items.TRIDENT ? -0.04500000178813934D : -0.12999999523162842D;
+         return item == Items.BOW ? -0.04500000178813934D : -0.12999999523162842D;
       }
    }
 }

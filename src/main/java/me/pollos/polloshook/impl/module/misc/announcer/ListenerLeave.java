@@ -18,7 +18,7 @@ public class ListenerLeave extends ModuleListener<Announcer, ConnectionEvent.Lea
          if ((Boolean)((Announcer)this.module).leave.getValue()) {
             String name = event.getName();
             if (!name.equals(mc.player.getName().getString())) {
-               Formatting color = Managers.getFriendManager().isFriend(name) ? Formatting.AQUA : Formatting.WHITE;
+               Formatting color = Managers.getFriendManager().isFriend(name) ? Formatting.AQUA : Formatting.YELLOW;
                switch((AnnouncerMode)((Announcer)this.module).mode.getValue()) {
                case BROADCAST:
                   ((Announcer)this.module).leavePlayer = name;

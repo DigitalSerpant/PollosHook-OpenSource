@@ -14,9 +14,9 @@ public class ColorSyntax extends Argument {
          return "red";
       } else if (currentArg.toLowerCase().startsWith("g") && !currentArg.toLowerCase().startsWith("gl")) {
          return "green";
-      } else if (currentArg.toLowerCase().startsWith("elementCodec")) {
+      } else if (currentArg.toLowerCase().startsWith("b")) {
          return "blue";
-      } else if (currentArg.toLowerCase().startsWith("keyCodec")) {
+      } else if (currentArg.toLowerCase().startsWith("a")) {
          return "alpha";
       } else if (currentArg.toLowerCase().startsWith("ra")) {
          return "random";

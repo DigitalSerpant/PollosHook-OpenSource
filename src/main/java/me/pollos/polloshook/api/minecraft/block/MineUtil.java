@@ -111,6 +111,6 @@ public class MineUtil implements Minecraftable {
    }
 
    public static boolean canBreak(BlockState state, BlockPos pos) {
-      return state.getHardness(mc.world, pos) != -1.0F && state.getBlock() != Blocks.BEDROCK && !state.isLiquid();
+      return state.getHardness(mc.world, pos) != -1.0F && state.getBlock() != Blocks.AIR && !state.isLiquid();
    }
 }

@@ -66,6 +66,6 @@ public final class FileUtil {
 
    
    private FileUtil() {
-      throw new UnsupportedOperationException("This is keyCodec utility class and cannot be instantiated");
+      throw new UnsupportedOperationException("This is a utility class and cannot be instantiated");
    }
 }

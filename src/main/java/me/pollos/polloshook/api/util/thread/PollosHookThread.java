@@ -30,6 +30,6 @@ public final class PollosHookThread implements GlobalExecutor {
 
    
    private PollosHookThread() {
-      throw new UnsupportedOperationException("This is keyCodec utility class and cannot be instantiated");
+      throw new UnsupportedOperationException("This is a utility class and cannot be instantiated");
    }
 }

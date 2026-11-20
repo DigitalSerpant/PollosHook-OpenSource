@@ -16,10 +16,10 @@ public class RemoveCommand extends Command {
    public String execute(String[] args) {
       String name = args[1];
       if (!Managers.getFriendManager().isFriend(name)) {
-         return "That user is not keyCodec friend";
+         return "That user is not a friend";
       } else {
          Managers.getFriendManager().removeFriend(name);
-         return String.format("Removed %s%s%s as keyCodec friend", Formatting.RED, name, Formatting.GRAY);
+         return String.format("Removed %s%s%s as a friend", Formatting.RED, name, Formatting.WHITE);
       }
    }
 

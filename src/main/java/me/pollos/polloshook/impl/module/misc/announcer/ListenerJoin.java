@@ -18,7 +18,7 @@ public class ListenerJoin extends ModuleListener<Announcer, ConnectionEvent.Join
          if ((Boolean)((Announcer)this.module).join.getValue()) {
             String name = event.getName();
             if (!name.equals(mc.player.getName().getString())) {
-               Formatting color = Managers.getFriendManager().isFriend(name) ? Formatting.AQUA : Formatting.WHITE;
+               Formatting color = Managers.getFriendManager().isFriend(name) ? Formatting.AQUA : Formatting.YELLOW;
                switch((AnnouncerMode)((Announcer)this.module).mode.getValue()) {
                case BROADCAST:
                   ((Announcer)this.module).joinPlayer = name;

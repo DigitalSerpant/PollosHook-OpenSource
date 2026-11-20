@@ -18,7 +18,7 @@ public class MacroCommand extends Command {
    public MacroCommand() {
       super(new String[]{"Macro", "m", "macros"}, new Argument("[add/del/list/clear]") {
          public String predict(String currentArg) {
-            if (currentArg.toLowerCase().startsWith("keyCodec")) {
+            if (currentArg.toLowerCase().startsWith("a")) {
                return "add";
             } else if (currentArg.toLowerCase().startsWith("d")) {
                return "del";
@@ -58,7 +58,7 @@ public class MacroCommand extends Command {
       if (args[1].equalsIgnoreCase("list")) {
          StringJoiner stringJoiner = new StringJoiner(", ");
          Stream<String> simpleMacroStream = Managers.getMacroManager().getSimpleMacros().stream().map((macro) -> {
-             return "\n%s%s %s[%s%s%s] [%s%s%s]".formatted(new Object[]{Formatting.GRAY, macro.getLabel(), Formatting.GRAY, Formatting.GRAY, macro.getChatMacro().getMessage(), Formatting.GRAY, Formatting.GRAY, KeyboardUtil.getKeyNameFromNumber(macro.getKey()), Formatting.GRAY});
+             return "\n%s%s %s[%s%s%s] [%s%s%s]".formatted(new Object[]{Formatting.WHITE, macro.getLabel(), Formatting.GRAY, Formatting.WHITE, macro.getChatMacro().getMessage(), Formatting.GRAY, Formatting.WHITE, KeyboardUtil.getKeyNameFromNumber(macro.getKey()), Formatting.GRAY});
          });
          Objects.requireNonNull(stringJoiner);
          simpleMacroStream.forEach(stringJoiner::add);

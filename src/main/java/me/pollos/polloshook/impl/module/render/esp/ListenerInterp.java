@@ -29,7 +29,7 @@ public class ListenerInterp extends ModuleListener<ESP, EntityInterpolationEvent
             }
          }
 
-         if (player.getMainHandStack().getItem() != Items.CROSSBOW) {
+         if (player.getMainHandStack().getItem() != Items.CHORUS_FRUIT) {
             return;
          }
 

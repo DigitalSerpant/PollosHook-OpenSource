@@ -9,6 +9,7 @@ import me.pollos.polloshook.api.value.value.constant.EnumValue;
 import me.pollos.polloshook.asm.ducks.IMinecraftClient;
 import me.pollos.polloshook.impl.gui.click.ClickGuiScreen;
 import me.pollos.polloshook.impl.module.other.clickgui.mode.NumberStyle;
+import net.minecraft.client.gui.screen.ChatScreen;
 
 public class ClickGUI extends ToggleableModule {
    private final EnumValue<NumberStyle> numberButtonStyle;
@@ -34,27 +35,46 @@ public class ClickGUI extends ToggleableModule {
    }
 
    protected void onEnable() {
-      if (mc.player != null && mc.world != null && !((IMinecraftClient)mc).isDisconnecting()) {
-         if (!(mc.currentScreen instanceof ClickGuiScreen)) {
-            ClickGuiScreen gui = new ClickGuiScreen();
-            gui.init();
-            gui.onGuiOpened();
-            mc.setScreen(gui);
-            this.instance = gui;
-         }
+      if (mc.currentScreen instanceof ChatScreen) {
+         // The submit handler closes chat after executing the command.
+         mc.send(this::openScreen);
       } else {
+         this.openScreen();
+      }
+   }
+
+   private void openScreen() {
+      if (!this.isEnabled()) {
+         return;
+      }
+      if (mc.player == null || mc.world == null || ((IMinecraftClient)mc).isDisconnecting()) {
          this.setEnabled(false);
+         return;
+      }
+      if (!(mc.currentScreen instanceof ClickGuiScreen)) {
+         ClickGuiScreen gui = new ClickGuiScreen();
+         gui.init();
+         gui.onGuiOpened();
+         mc.setScreen(gui);
+         if (mc.currentScreen == gui) {
+            this.instance = gui;
+         } else {
+            this.setEnabled(false);
+         }
       }
    }
 
    protected void onDisable() {
-      if (mc.player != null && mc.world != null) {
-         if (mc.currentScreen instanceof ClickGuiScreen && this.instance != null) {
-            this.instance.close();
-            this.instance = null;
-         }
-
+      ClickGuiScreen gui = this.instance;
+      this.instance = null;
+      if (gui != null && mc.currentScreen == gui) {
+         gui.close();
       }
+   }
+
+   void onScreenReplaced() {
+      this.instance = null;
+      this.setEnabled(false);
    }
 
    public static ClickGUI get() {

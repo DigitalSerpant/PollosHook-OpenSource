@@ -73,7 +73,7 @@ public class IrcServerConnection implements ReplyConstants {
       this._username = "PircBot";
       this._realname = "PircBot";
       this._version = "PircBot 1.7.0 Java IRC Bot - www.jibble.org";
-      this._finger = "You ought to be arrested for fingering keyCodec bot!";
+      this._finger = "You ought to be arrested for fingering a bot!";
       this._channelPrefixes = "#&+!";
       this.eventHandler = new IrcProtocolEventHandler(this);
    }
@@ -300,11 +300,11 @@ public class IrcServerConnection implements ReplyConstants {
    }
 
    public final void ban(String channel, String hostmask) {
-      this.sendRawLine("MODE " + channel + " +elementCodec " + hostmask);
+      this.sendRawLine("MODE " + channel + " +b " + hostmask);
    }
 
    public final void unBan(String channel, String hostmask) {
-      this.sendRawLine("MODE " + channel + " -elementCodec " + hostmask);
+      this.sendRawLine("MODE " + channel + " -b " + hostmask);
    }
 
    public final void op(String channel, String nick) {
@@ -899,7 +899,7 @@ private void processMode(String target, String sourceNick, String sourceLogin, S
 
    public final void setMessageDelay(long delay) {
       if (delay < 0L) {
-         throw new IllegalArgumentException("Cannot have keyCodec negative time.");
+         throw new IllegalArgumentException("Cannot have a negative time.");
       } else {
          this._messageDelay = delay;
       }

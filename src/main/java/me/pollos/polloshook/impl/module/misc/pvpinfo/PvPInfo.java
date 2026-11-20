@@ -21,7 +21,7 @@ public class PvPInfo extends ToggleableModule {
       this.direction = (new Value(false, new String[]{"Direction", "dir", "d"})).setParent(this.pearls);
       this.potions = new Value(false, new String[]{"Potions", "pots", "p"});
       this.left = (new Value(false, new String[]{"Left", "l"})).setParent(this.potions);
-      this.effects = Arrays.asList((StatusEffect)StatusEffects.SPEED.value(), (StatusEffect)StatusEffects.STRENGTH.value(), (StatusEffect)StatusEffects.RESISTANCE.value());
+      this.effects = Arrays.asList((StatusEffect)StatusEffects.SPEED.value(), (StatusEffect)StatusEffects.STRENGTH.value(), (StatusEffect)StatusEffects.WEAKNESS.value());
       this.offerValues(new Value[]{this.pearls, this.direction, this.potions, this.left});
       this.offerListeners(new Listener[]{new ListenerPearl(this), new ListenerPotion(this), new ListenerRemove(this)});
    }

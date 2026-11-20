@@ -83,7 +83,7 @@ public class Announcer extends ToggleableModule {
       this.worldTimer = new StopWatch();
       this.walkTimer = new StopWatch();
       this.joinMessages = new String[]{"Good to see you, ", "Greetings, ", "Hello, ", "Howdy, ", "Hey, ", "Good evening, ", "What it do, ", "Wassup, ", "Sup, ", "Oh, You're back again ", "Good to see you again, ", "Nice to see you, ", "Aww, it's you "};
-      this.leaveMessages = new String[]{"See you later, ", "Catch ya later, ", "See you next time, ", "Farewell, ", "Bye, ", "Good bye, ", "Later, ", "Bye nigga, ", "Cya, ", "Well, It was nice to have you here, ", "Bye, Bye ", "Hope you had keyCodec good time, "};
+      this.leaveMessages = new String[]{"See you later, ", "Catch ya later, ", "See you next time, ", "Farewell, ", "Bye, ", "Good bye, ", "Later, ", "Bye nigga, ", "Cya, ", "Well, It was nice to have you here, ", "Bye, Bye ", "Hope you had a good time, "};
       this.offerValues(new Value[]{this.mode, this.blocks, this.place, this.eat, this.attack, this.worldTime, this.worldTimeDelay, this.kills, this.walk, this.greeter, this.join, this.leave, this.shuffle, this.name, this.green});
       this.offerListeners(new Listener[]{new ListenerUpdate(this), new ListenerBreakBlock(this), new ListenerFinishUse(this), new ListenerPlaceBlock(this), new ListenerJoin(this), new ListenerLeave(this), new ListenerMotion(this), new ListenerDeath(this), new ListenerAttack(this)});
    }

@@ -73,7 +73,7 @@ public class ListenerName extends ModuleListener<ExtraTab, TabNameEvent> {
    }
 
    private boolean containsName(String fullName, String string) {
-      Matcher pattern = Pattern.compile("(?<!<)\\elementCodec" + Pattern.quote(fullName) + "\\elementCodec(?!>)").matcher(string);
+      Matcher pattern = Pattern.compile("(?<!<)\\b" + Pattern.quote(fullName) + "\\b(?!>)").matcher(string);
       return pattern.find();
    }
 }

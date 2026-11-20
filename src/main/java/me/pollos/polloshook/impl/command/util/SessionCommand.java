@@ -12,7 +12,7 @@ public class SessionCommand extends Command {
 
    public String execute(String[] args) {
       if (args.length < 1) {
-         return "Insert keyCodec username";
+         return "Insert a username";
       } else {
          String name = args[1];
          SessionUtil.setSession(name);

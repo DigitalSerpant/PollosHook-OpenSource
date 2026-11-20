@@ -43,7 +43,7 @@ public class ArmorWarning extends DraggableHUDModule {
          List<ItemStack> items = new ArrayList();
          int offset = 0;
          if (mc.currentScreen instanceof PollosHUD) {
-            Item[] pieces = new Item[]{Items.GOLDEN_HELMET, Items.GOLDEN_CHESTPLATE, Items.GOLDEN_LEGGINGS, Items.GOLDEN_BOOTS};
+            Item[] pieces = new Item[]{Items.GOLDEN_HELMET, Items.IRON_CHESTPLATE, Items.LEATHER_LEGGINGS, Items.CHAINMAIL_BOOTS};
             Item[] var5 = pieces;
             int var6 = pieces.length;
 

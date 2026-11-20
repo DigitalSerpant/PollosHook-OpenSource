@@ -7,6 +7,7 @@ import net.minecraft.client.option.SimpleOption;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.Unique;
 
 @Mixin({SimpleOption.class})
 public class MixinSimpleOption<T> implements ISimpleOption<T> {
@@ -16,7 +17,9 @@ public class MixinSimpleOption<T> implements ISimpleOption<T> {
    @Final
    private Consumer<T> changeCallback;
 
-   public void setValue(T newValue) {
+   @Override
+   @Unique
+   public void polloshook$setValue(T newValue) {
       if (!MinecraftClient.getInstance().isRunning()) {
          this.value = newValue;
       } else {

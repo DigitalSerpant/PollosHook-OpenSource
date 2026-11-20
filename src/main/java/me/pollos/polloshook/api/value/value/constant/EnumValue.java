@@ -54,11 +54,11 @@ public class EnumValue<T extends Enum<?>> extends Value<T> {
             Enum<?> enumArray = var5[var7];
             Object[] var10002 = new Object[]{enumArray.name().equalsIgnoreCase(((Enum)this.getValue()).toString()) ? Formatting.GREEN : Formatting.RED, null};
             String var10005 = this.getFixedValue(enumArray);
-            var10002[1] = var10005 + String.valueOf(Formatting.GRAY);
+            var10002[1] = var10005 + String.valueOf(Formatting.WHITE);
             stringJoiner.add(String.format("%s%s", var10002));
          }
 
-         return "%s%s%s val %s%s%s modes (%s) %s".formatted(new Object[]{Formatting.YELLOW, mod.getLabel(), Formatting.GRAY, Formatting.AQUA, this.getLabel(), Formatting.GRAY, array.length, stringJoiner});
+         return "%s%s%s val %s%s%s modes (%s) %s".formatted(new Object[]{Formatting.GRAY, mod.getLabel(), Formatting.WHITE, Formatting.AQUA, this.getLabel(), Formatting.WHITE, array.length, stringJoiner});
       }
    }
 

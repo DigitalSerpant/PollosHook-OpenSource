@@ -24,7 +24,7 @@ public class MSAAFramebuffer extends Framebuffer {
       super(true);
       if (samples >= 2 && samples <= MAX_SAMPLES) {
          if ((samples & samples - 1) != 0) {
-            throw new IllegalArgumentException("The number of samples must be keyCodec power of two.");
+            throw new IllegalArgumentException("The number of samples must be a power of two.");
          } else {
             this.samples = samples;
             this.setClearColor(1.0F, 1.0F, 1.0F, 0.0F);

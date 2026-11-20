@@ -26,7 +26,7 @@ public class ListenerScreen extends SafeModuleListener<DeathCoordsLog, ScreenEve
          String deathPosition = mc.player.getBlockPos().toShortString();
          MutableText mut = Text.empty();
          ClickEvent clickEvent = new ClickEvent(Action.COPY_TO_CLIPBOARD, deathPosition);
-         HoverEvent hoverEvent = new HoverEvent(net.minecraft.text.HoverEvent.Action.SHOW_TEXT, Text.literal(String.valueOf(Formatting.GRAY) + "Click to copy to clipboard"));
+         HoverEvent hoverEvent = new HoverEvent(net.minecraft.text.HoverEvent.Action.SHOW_TEXT, Text.literal(String.valueOf(Formatting.WHITE) + "Click to copy to clipboard"));
          MutableText deathText = Text.literal(" You died at " + deathPosition).setStyle(Style.EMPTY.withColor((new Color(TextColor.fromFormatting(Formatting.RED).getRgb())).getRGB()).withClickEvent(clickEvent).withHoverEvent(hoverEvent));
          mut.append(deathText);
          TextUtil.printWithID(ClientLogger.getLogger().getAlert().copy().append(mut), -1);

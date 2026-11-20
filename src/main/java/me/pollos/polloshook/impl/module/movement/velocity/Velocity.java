@@ -45,7 +45,7 @@ public class Velocity extends CommandModule {
    }
 
    protected String getTag() {
-      return this.mode.getValue() == VelocityMode.NORMAL ? "H" + String.valueOf(this.horizontal.getValue()) + "%" + String.valueOf(Formatting.BOLD) + "|" + String.valueOf(Formatting.GRAY) + "V" + String.valueOf(this.vertical.getValue()) + "%" : "Grim";
+      return this.mode.getValue() == VelocityMode.NORMAL ? "H" + String.valueOf(this.horizontal.getValue()) + "%" + String.valueOf(Formatting.GRAY) + "|" + String.valueOf(Formatting.WHITE) + "V" + String.valueOf(this.vertical.getValue()) + "%" : "Grim";
    }
 
    public String onCommand(String[] args) {

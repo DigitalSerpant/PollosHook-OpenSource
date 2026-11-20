@@ -1,5 +1,6 @@
 package me.pollos.polloshook.asm.mixins.render;
 
+import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 import com.llamalad7.mixinextras.sugar.Local;
 import com.mojang.blaze3d.platform.GlStateManager.DstFactor;
 import com.mojang.blaze3d.platform.GlStateManager.SrcFactor;
@@ -124,20 +125,19 @@ public abstract class MixinWorldRenderer implements IWorldRenderer {
 
    }
 
-   @Redirect(method = {
+   @ModifyExpressionValue(method = {
          "renderWeather" }, at = @At(value = "INVOKE", target = "Lnet/minecraft/client/world/ClientWorld;getRainGradient(F)F"))
-   private float renderWeatherHook(ClientWorld instance, float v) {
-      this.event = new NoWeather.ForceWeatherEvent(
-            ((Biome) instance.getBiome(BlockPos.ofFloored(Interpolation.getCameraPos())).value())
-                  .getPrecipitation(BlockPos.ofFloored(Interpolation.getCameraPos())));
+   private float renderWeatherHook(float rainGradient) {
+      BlockPos cameraPos = BlockPos.ofFloored(Interpolation.getCameraPos());
+      Biome biome = this.world.getBiome(cameraPos).value();
+      this.event = new NoWeather.ForceWeatherEvent(biome.getPrecipitation(cameraPos));
       this.event.dispatch();
-      return this.event.isCanceled() ? 1.0E-5F : v;
+      return this.event.isCanceled() ? 1.0E-5F : rainGradient;
    }
 
-   @Redirect(method = {
+   @ModifyExpressionValue(method = {
          "renderWeather" }, at = @At(value = "INVOKE", target = "Lnet/minecraft/world/biome/Biome;getPrecipitation(Lnet/minecraft/util/math/BlockPos;)Lnet/minecraft/world/biome/Biome$Precipitation;"))
-   private Precipitation renderWeatherHook(Biome instance, BlockPos pos) {
-      Precipitation precipitation = instance.getPrecipitation(pos);
+   private Precipitation renderWeatherHook(Precipitation precipitation) {
       this.event.setPrecipitation(precipitation);
       this.event.dispatch();
       return this.event.isCanceled() ? this.event.getPrecipitation() : precipitation;

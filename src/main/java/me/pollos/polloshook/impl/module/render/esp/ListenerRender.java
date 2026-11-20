@@ -233,73 +233,46 @@ public class ListenerRender extends ModuleListener<ESP, RenderEvent> {
       ((ESP)this.module).chorusFruits.removeAll(toRemove);
    }
    
-   ItemEntity itemEntity;
-
    private void renderItemNametags(RenderEvent event, List<Entity> entities) {
       MatrixStack matrix = event.getMatrixStack();
-      Set<Entity> processed = new HashSet();
-      List<RenderStack> renderStacks = new ArrayList();
-      Iterator var6 = entities.iterator();
+      Set<Entity> processed = new HashSet<>();
+      List<RenderStack> renderStacks = new ArrayList<>();
 
-      while(true) {
-         Entity entity;
-         do {
-            do {
-               do {
-                  if (!var6.hasNext()) {
-                     double yOffset = 0.0D;
-
-                     String displayName;
-                     for(Iterator var17 = renderStacks.iterator(); var17.hasNext(); yOffset += 0.25D + (double)Managers.getTextManager().getHeight(displayName) / 100.0D) {
-                        RenderStack renderStack = (RenderStack)var17.next();
-                        ItemStack stack = renderStack.getStack();
-                        int count = renderStack.getCount();
-                        Vec3d vec = Interpolation.interpolateEntity(renderStack.getEntity());
-                        String var10000 = stack.getName().getString();
-                        displayName = var10000 + " x" + count;
-                        double finalYOffset = (Boolean)((ESP)this.module).stack.getValue() ? yOffset : 0.0D;
-                        this.drawTag(matrix, displayName, vec.x, vec.y + finalYOffset, vec.z, Interpolation.getMcPlayerInterpolation());
-                     }
-
-                     return;
-                  }
-
-                  entity = (Entity)var6.next();
-               } while(!(entity instanceof ItemEntity));
-
-               itemEntity = (ItemEntity)entity;
-            } while(processed.contains(entity));
-         } while(!Interpolation.isVisible(Interpolation.interpolateAxis(itemEntity.getVisibilityBoundingBox()), event));
-
-         if (!(Boolean)((ESP)this.module).merge.getValue()) {
-            ItemStack stack = itemEntity.getStack();
-            renderStacks.add(new RenderStack(stack.copy(), entity, stack.getCount()));
-         } else {
-            List<ItemEntity> collidedItems = entities.stream().filter((e) -> {
-               return e instanceof ItemEntity && !processed.contains(e);
-            }).map((e) -> {
-               return (ItemEntity)e;
-            }).filter((e) -> {
-               return e.getBoundingBox().expand(0.5D, 0.5D, 0.5D).intersects(itemEntity.getBoundingBox());
-            }).toList();
-            Map<Item, RenderStack> mapped = new HashMap();
-            Iterator var11 = collidedItems.iterator();
-
-            while(var11.hasNext()) {
-               ItemEntity collided = (ItemEntity)var11.next();
-               ItemStack stack = collided.getStack();
-               Item item = stack.getItem();
-               mapped.putIfAbsent(item, new RenderStack(stack.copy(), entity, 0));
-               RenderStack renderStack = (RenderStack)mapped.get(item);
-               renderStack.getStack().setCount(1);
-               renderStack.increase(stack.getCount());
-            }
-
-            renderStacks.addAll(mapped.values());
-            processed.addAll(collidedItems);
+      for (Entity entity : entities) {
+         if (!(entity instanceof ItemEntity itemEntity) || processed.contains(entity)
+               || !Interpolation.isVisible(Interpolation.interpolateAxis(itemEntity.getVisibilityBoundingBox()), event)) {
+            continue;
          }
 
+         if (this.module.merge.getValue()) {
+            List<ItemEntity> collidedItems = entities.stream()
+               .filter(other -> other instanceof ItemEntity && !processed.contains(other))
+               .map(ItemEntity.class::cast)
+               .filter(other -> other.getBoundingBox().expand(0.5D).intersects(itemEntity.getBoundingBox()))
+               .toList();
+            Map<Item, RenderStack> merged = new HashMap<>();
+            for (ItemEntity collided : collidedItems) {
+               ItemStack stack = collided.getStack();
+               RenderStack entry = merged.computeIfAbsent(stack.getItem(), item -> new RenderStack(stack.copy(), entity, 0));
+               entry.getStack().setCount(1);
+               entry.increase(stack.getCount());
+            }
+            renderStacks.addAll(merged.values());
+            processed.addAll(collidedItems);
+         } else {
+            ItemStack stack = itemEntity.getStack();
+            renderStacks.add(new RenderStack(stack.copy(), entity, stack.getCount()));
+         }
          processed.add(itemEntity);
+      }
+
+      double yOffset = 0.0D;
+      for (RenderStack renderStack : renderStacks) {
+         Vec3d pos = Interpolation.interpolateEntity(renderStack.getEntity());
+         String name = renderStack.getStack().getName().getString() + " x" + renderStack.getCount();
+         double offset = this.module.stack.getValue() ? yOffset : 0.0D;
+         this.drawTag(matrix, name, pos.x, pos.y + offset, pos.z, Interpolation.getMcPlayerInterpolation());
+         yOffset += 0.25D + Managers.getTextManager().getHeight(name) / 100.0D;
       }
    }
 }

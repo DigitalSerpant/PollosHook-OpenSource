@@ -33,7 +33,7 @@ public class SettingColorComponent extends ColorComponent {
          SettingColorComponent.this.updateColor(Color.HSBtoRGB(SettingColorComponent.this.getHue(), SettingColorComponent.this.getSaturation(), SettingColorComponent.this.getBrightness()));
       }
    }).withTag("colorsetting_saturation");
-   private final NumberValue<Float> brightness = (new NumberValue<Float>(0.45F, 0.0F, 1.0F, 0.01F, new String[]{"Brightness", "elementCodec"}) {
+   private final NumberValue<Float> brightness = (new NumberValue<Float>(0.45F, 0.0F, 1.0F, 0.01F, new String[]{"Brightness", "b"}) {
       public Float getValue() {
          return (Float)super.getValue();
       }
@@ -101,64 +101,25 @@ public class SettingColorComponent extends ColorComponent {
       super.setHeight(this.isColorExtended() ? this.getExtendedHeight() + 40.0F + bro : 14.0F);
    }
 
-   float offY;
-
    private void initSettings() {
       this.hslSettings.clear();
-      offY = 105.5F + (float)(this.getColorValue().isGlobalAllowed() ? 14 : 0);
-      /* 
-      this.register(new NumberComponent(this.hue) {
-        {
-            this.moved(SettingColorComponent.this.getFinishedX(), SettingColorComponent.this.getFinishedY() + offY);
-        }
-
-        @Override
-        public void setSettingFromX(int mouseX) {
-            if (!SettingColorComponent.this.getColorValue().isGlobal()) {
-                super.setSettingFromX(mouseX);
-            }
-        }
-    });
-
-    offY += 14.0F;
-
-    this.register(new NumberComponent(this.saturation) {
-        {
-            this.moved(SettingColorComponent.this.getFinishedX(), SettingColorComponent.this.getFinishedY() + offY);
-        }
-
-        @Override
-        public void setSettingFromX(int mouseX) {
-            if (!SettingColorComponent.this.getColorValue().isGlobal()) {
-                super.setSettingFromX(mouseX);
-            }
-        }
-    });
-
-    offY += 14.0F;
-
-    this.register(new NumberComponent(this.brightness) {
-        {
-            this.moved(SettingColorComponent.this.getFinishedX(), SettingColorComponent.this.getFinishedY() + offY);
-        }
-
-        @Override
-        public void setSettingFromX(int mouseX) {
-            if (!SettingColorComponent.this.getColorValue().isGlobal()) {
-                super.setSettingFromX(mouseX);
-            }
-        }
-    });
+      float offsetY = 105.5F + (this.getColorValue().isGlobalAllowed() ? 14.0F : 0.0F);
+      this.hslSettings.add(this.createSlider(this.hue, offsetY));
+      this.hslSettings.add(this.createSlider(this.saturation, offsetY + 14.0F));
+      this.hslSettings.add(this.createSlider(this.brightness, offsetY + 28.0F));
    }
 
-   private void register(NumberComponent component) {
-      boolean exists = this.hslSettings.stream().anyMatch((c) -> {
-         return c.getNumberValue().getLabel().equals(component.getNumberValue().getLabel());
-      });
-      if (!exists) {
-         this.hslSettings.add(component);
-      }
-      */ 
-      //TODO:  Fix this fucking implemetation
+   @SuppressWarnings("unchecked")
+   private NumberComponent createSlider(NumberValue<?> value, float offsetY) {
+      NumberComponent slider = new NumberComponent((NumberValue<Number>)value, this.rect, 0.0F, offsetY) {
+         @Override
+         public void setSettingFromX(int mouseX) {
+            if (!SettingColorComponent.this.getColorValue().isGlobal()) {
+               super.setSettingFromX(mouseX);
+            }
+         }
+      };
+      slider.moved(this.getFinishedX(), this.getFinishedY());
+      return slider;
    }
 }

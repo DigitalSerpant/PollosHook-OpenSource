@@ -13,7 +13,12 @@ import org.spongepowered.asm.mixin.Unique;
 
 @Mixin({TextVisitFactory.class})
 public abstract class MixinTextVisitFactory implements Minecraftable {
-   private static boolean visitFormatted(String text, int startIndex, Style startingStyle, Style resetStyle, CharacterVisitor visitor) {
+   /**
+    * @author PollosHook
+    * @reason Apply NameProtect before visiting formatted text.
+    */
+   @Overwrite
+   public static boolean visitFormatted(String text, int startIndex, Style startingStyle, Style resetStyle, CharacterVisitor visitor) {
       if (Managers.getModuleManager().get(NameProtect.class) != null) {
          text = NameProtect.nameProtect(text);
       }
